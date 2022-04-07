@@ -211,15 +211,19 @@ class ProductThumbState extends State<ProductThumb> {
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
-        return const Center(
-            child: SizedBox(
-          height: 50.0,
-          width: 50.0,
-          child: CircularProgressIndicator(
-            value: null,
-            strokeWidth: 7.0,
-          ),
-        ));
+        return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Center(
+                  child: SizedBox(
+                height: 50.0,
+                width: 50.0,
+                child: CircularProgressIndicator(
+                  value: null,
+                  strokeWidth: 7.0,
+                ),
+              ))
+            ]);
       },
     );
   }

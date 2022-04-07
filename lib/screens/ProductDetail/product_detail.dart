@@ -44,7 +44,9 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
           ],
         ),
         body: SingleChildScrollView(
-          child: ProductThumb(futureProduct: futureProduct),
+          child: Align(
+              alignment: Alignment.center,
+              child: ProductThumb(futureProduct: futureProduct)),
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

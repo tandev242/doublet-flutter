@@ -1,3 +1,4 @@
+import 'package:sp_shop_app/components/product_item.dart';
 import 'package:sp_shop_app/entities/product.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/screens/ProductDetail/product_detail.dart';
@@ -30,8 +31,7 @@ class ProductList extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) {
                             return ProductDetailScreen(
-                                slug:
-                                    'NIKE-Lunar-Legend-7-Pro-IC-Always-Forward-Racer-BlueBlack-143ey0Wed_');
+                                slug: products![index].slug);
                           },
                         ),
                       );
@@ -46,69 +46,9 @@ class ProductList extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 10.0, right: 10.0, left: 10.0),
-                        child: Stack(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.network(
-                                  products?[index].productPictures[0],
-                                  height: 160,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  products![index].name,
-                                  style: const TextStyle(
-                                      color: Color(0xff181725),
-                                      fontSize: 11.0,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ],
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: SizedBox(
-                                width: 45,
-                                height: 45,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    onPrimary: Colors.black,
-                                    primary: const Color(0xff53B175),
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(17.0),
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                  child: Image.asset('assets/img/plus_sign.png',
-                                      height: 17,
-                                      color: const Color(0xffffffff)),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              bottom: 0,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15),
-                                child: Text(
-                                    "₫" + products[index].price.toString(),
-                                    style: const TextStyle(
-                                        color: Color(0xff181725),
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1)),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                          padding: const EdgeInsets.only(
+                              top: 10.0, right: 10.0, left: 10.0),
+                          child: ProductItem(product: products![index])),
                     ),
                   ),
                 );
@@ -117,14 +57,19 @@ class ProductList extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           }
-          return const SizedBox(
-            height: 50.0,
-            width: 50.0,
-            child: CircularProgressIndicator(
-              value: null,
-              strokeWidth: 7.0,
-            ),
-          );
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Center(
+                  child: SizedBox(
+                height: 50.0,
+                width: 50.0,
+                child: CircularProgressIndicator(
+                  value: null,
+                  strokeWidth: 7.0,
+                ),
+              ))
+            ]);
         },
       ),
     );
