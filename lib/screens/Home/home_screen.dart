@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
-import 'package:sp_shop_app/components/product_list.dart';
-import 'package:sp_shop_app/entities/product.dart';
 import 'package:sp_shop_app/screens/Home/components/body.dart';
 
 class HomeScreen extends StatefulWidget {

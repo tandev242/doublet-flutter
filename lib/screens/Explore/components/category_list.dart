@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/constants/constants.dart';
-import 'package:sp_shop_app/entities/category.dart';
 import 'package:sp_shop_app/screens/Collection/collection_screen.dart';
 
 class CategoryList extends StatelessWidget {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
-import 'package:sp_shop_app/components/product_item.dart';
 import 'package:sp_shop_app/constants/constants.dart';
 import 'package:sp_shop_app/screens/Collection/components/collection_list.dart';
-import 'package:sp_shop_app/screens/ProductDetail/product_detail.dart';
 
 class CollectionScreen extends StatefulWidget {
   final String name;
