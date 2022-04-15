@@ -13,7 +13,7 @@ class Size {
     return Size(
       id: json['_id'] as String,
       name: json['size'] as String,
-      description: json['description'] as String,
+      description: json['description'] ?? '',
     );
   }
 }

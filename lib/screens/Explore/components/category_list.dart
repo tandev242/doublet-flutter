@@ -66,7 +66,7 @@ class CategoryList extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(categories![index].img,
-                                height: 200, width: 220, fit: BoxFit.cover),
+                                height: 200, fit: BoxFit.cover),
                           ),
                           Text(
                             categories[index].name,

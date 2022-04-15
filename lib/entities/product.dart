@@ -3,12 +3,11 @@ import 'package:sp_shop_app/entities/category.dart';
 import 'package:sp_shop_app/entities/review.dart';
 import 'package:sp_shop_app/entities/size.dart';
 
-
 class Product {
   final String id;
   final String name;
   final String slug;
-  final String description;
+  final String? description;
   final List productPictures;
   final int price;
 
@@ -27,11 +26,10 @@ class Product {
         name: json['name'] as String,
         slug: json['slug'] as String,
         price: json['price'] as int,
-        description: json['description'] as String,
+        description: json['description'] ?? '',
         productPictures: ((json['productPictures'] ?? []) as List).map((i) {
           return i['img'];
-        }).toList()
-        );
+        }).toList());
   }
 }
 

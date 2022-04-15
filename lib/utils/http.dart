@@ -8,11 +8,16 @@ class Http {
   final Dio dio = Dio();
   auth(token) {
     if (token != null) {
-      http.dio.options.headers = {'Authorization': 'Token $token'};
+      http.dio.options.headers = {'Authorization': 'Bearer $token'};
     }
+    http.dio.options.headers = {
+      'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ5NjUzMDEyLCJleHAiOjE2NDk3Mzk0MTJ9.upGR5Q7FOUBDts8fhuTgZyG5J2Tp3pNvLqJwNkUutEw'
+    };
   }
 
   get(String url, {data}) async {
+    auth(null);
     try {
       return await dio.get('$apiURL/$url');
     } on DioError catch (e) {

@@ -138,7 +138,7 @@ class ProductThumbState extends State<ProductThumb> {
                     ),
                     children: <Widget>[
                       Text(
-                        product.description,
+                        product.description ?? '',
                         style: const TextStyle(
                             color: Color(0xff7C7C7C),
                             fontSize: 13,

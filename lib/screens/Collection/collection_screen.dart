@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
+import 'package:sp_shop_app/components/bottom_navigation.dart';
 import 'package:sp_shop_app/constants/constants.dart';
 import 'package:sp_shop_app/screens/Collection/components/collection_list.dart';
 
@@ -70,6 +71,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigation()
     );
   }
 }
