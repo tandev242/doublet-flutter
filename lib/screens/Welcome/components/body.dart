@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/components/background.dart';
-import 'package:sp_shop_app/constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
 import '../../../Components/rounded_button.dart';
 

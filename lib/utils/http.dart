@@ -3,7 +3,7 @@ import 'package:dio/dio.dart' show Dio, DioError;
 final Http http = Http();
 
 class Http {
-  String apiURL = 'https://api-sportswear.herokuapp.com/api';
+  String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
 
   final Dio dio = Dio();
   auth(token) {
@@ -12,7 +12,7 @@ class Http {
     }
     http.dio.options.headers = {
       'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ5NjUzMDEyLCJleHAiOjE2NDk3Mzk0MTJ9.upGR5Q7FOUBDts8fhuTgZyG5J2Tp3pNvLqJwNkUutEw'
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUwMzM1MzI5LCJleHAiOjE2NTA0MjE3Mjl9.h5OHl59KrrEDkEz7j03U0tTat1g2hJspxtfO-kWfqb4'
     };
   }
 

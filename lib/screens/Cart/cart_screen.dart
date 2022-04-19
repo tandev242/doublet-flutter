@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/apis/cart_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -97,33 +97,50 @@ class _CartScreenState extends State<CartScreen> {
                           onPressed: () {}),
                     ),
                     Positioned(
-                        top: 75.0,
-                        left: 15.0,
-                        child: Text(
-                          'Shopping Cart',
-                          style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold),
-                        )),
-                    Positioned(
                       top: 20.0,
                       child: Column(
                         children: <Widget>[
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', true, 0),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', true, 1),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', false, 2),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', false, 2),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', true, 0),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', true, 1),
-                          itemCard('Finn Navian-Sofa', 'gray', '248',
-                              'assets/img/Nike_Shoe_PNG.png', false, 2)
+                          FutureBuilder<List>(
+                            future: futureCartItems,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                List? cartItems = snapshot.data;
+                                return SizedBox(
+                                    width: double.infinity,
+                                    child: ListView.builder(
+                                        itemCount: cartItems!.length,
+                                        itemBuilder: (context, index) {
+                                          return itemCard(
+                                              "HAhaha",
+                                              'gray',
+                                              cartItems[index]
+                                                  .product
+                                                  .price
+                                                  .toString(),
+                                              cartItems[index]
+                                                  .product
+                                                  .productPictures[index],
+                                              true,
+                                              0);
+                                        }));
+                              } else if (snapshot.hasError) {
+                                return Text("${snapshot.error}");
+                              }
+                              return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Center(
+                                        child: SizedBox(
+                                      height: 50.0,
+                                      width: 50.0,
+                                      child: CircularProgressIndicator(
+                                        value: null,
+                                        strokeWidth: 7.0,
+                                      ),
+                                    ))
+                                  ]);
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -213,7 +230,7 @@ class _CartScreenState extends State<CartScreen> {
                         width: 125.0,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(imgPath),
+                                image: NetworkImage(imgPath),
                                 fit: BoxFit.contain)),
                       ),
                       SizedBox(width: 4.0),
@@ -225,7 +242,7 @@ class _CartScreenState extends State<CartScreen> {
                             children: <Widget>[
                               Text(
                                 itemName,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15.0),

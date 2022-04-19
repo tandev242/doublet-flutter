@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sp_shop_app/apis/category_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Explore/components/category_list.dart';
 
 class ExploreScreen extends StatefulWidget {

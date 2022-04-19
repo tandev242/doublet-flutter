@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:sp_shop_app/entities/cart_item.dart';
-
-import '../utils/http.dart';
+import 'package:sp_shop_app/utils/http.dart';
 
 class CartApi {
   static Future<List> getCart() async {

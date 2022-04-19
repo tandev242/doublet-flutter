@@ -76,7 +76,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: BottomNavigation());
   }
 }

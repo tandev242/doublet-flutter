@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sp_shop_app/constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DoubleT shop',
       theme: ThemeData(
           primarySwatch: Colors.red,
           primaryColor: Colors.red,
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),
         Constants.EXPLORE_SCREEN: (BuildContext context) => ExploreScreen(),
         Constants.CART_SCREEN: (BuildContext context) => CartScreen(),
+        Constants.WELCOME_SCREEN: (BuildContext context) => WelcomeScreen(),
       },
     );
   }

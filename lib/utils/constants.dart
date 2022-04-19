@@ -7,6 +7,7 @@ class Constants {
   static const String PROFILE_SCREEN = "PROFILE_SCREEN";
   static const String PRODUCT_DETAIL_SCREEN = "PRODUCT_DETAIL_SCREEN";
   static const String CART_SCREEN = "CART_SCREEN";
+  static const String WELCOME_SCREEN = "WELCOME_SCREEN";
 
 
   static const String LOGIN = "Đăng nhập";

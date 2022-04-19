@@ -35,17 +35,21 @@ class Body extends StatelessWidget {
             hintText: Constants.EMAIL,
             icon: Icon(Icons.email),
           ),
-          RoundedPasswordField(),
-          RoundedButton(press: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return HomeScreen();
-                  },
-                ),
-              );
-          }, text: Constants.LOGIN),
+          RoundedPasswordField(
+            hintText: Constants.PASSWORD,
+          ),
+          RoundedButton(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomeScreen();
+                    },
+                  ),
+                );
+              },
+              text: Constants.LOGIN),
           RoundedButton(
             press: () {},
             text: Constants.LOGIN_GOOGLE,
