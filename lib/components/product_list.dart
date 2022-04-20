@@ -1,7 +1,7 @@
 import 'package:sp_shop_app/components/product_item.dart';
 import 'package:sp_shop_app/entities/product.dart';
 import 'package:flutter/material.dart';
-import 'package:sp_shop_app/screens/ProductDetail/product_detail.dart';
+import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key, required this.futureProducts}) : super(key: key);

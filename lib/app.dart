@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
@@ -21,13 +22,14 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home:  HomeScreen(),
-      home: CartScreen(),
+      home: MyOrdersScreen(),
       routes: <String, WidgetBuilder>{
         Constants.PROFILE_SCREEN: (BuildContext context) => ProfileScreen(),
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),
         Constants.EXPLORE_SCREEN: (BuildContext context) => ExploreScreen(),
         Constants.CART_SCREEN: (BuildContext context) => CartScreen(),
         Constants.WELCOME_SCREEN: (BuildContext context) => WelcomeScreen(),
+        Constants.MY_ORDERS_SCREEN: (BuildContext context) => MyOrdersScreen(),
       },
     );
   }

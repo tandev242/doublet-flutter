@@ -8,9 +8,11 @@ class Constants {
   static const String PRODUCT_DETAIL_SCREEN = "PRODUCT_DETAIL_SCREEN";
   static const String CART_SCREEN = "CART_SCREEN";
   static const String WELCOME_SCREEN = "WELCOME_SCREEN";
+  static const String MY_ORDERS_SCREEN = "MY_ORDERS_SCREEN";
 
 
   static const String LOGIN = "Đăng nhập";
+  static const String MY_ORDERS_TITLE = "Đơn hàng của tôi";
   static const String LOGIN_GOOGLE = "Đăng nhập bằng Google";
   static const String EMAIL = "Email";
   static const String PASSWORD = "Mật khẩu";

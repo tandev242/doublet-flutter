@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/Components/rounded_button.dart';
-import 'package:sp_shop_app/Constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/components/background.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';

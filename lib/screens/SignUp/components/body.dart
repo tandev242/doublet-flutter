@@ -5,8 +5,8 @@ import 'package:sp_shop_app/Components/rounded_input_field.dart';
 import 'package:sp_shop_app/Components/rounded_password_field.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
 import 'package:sp_shop_app/screens/SignUp/components/background.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 
-import '../../../Constants/constants.dart';
 
 class Body extends StatelessWidget {
   @override
