@@ -11,6 +11,9 @@ class Constants {
   static const String MY_ORDERS_SCREEN = "MY_ORDERS_SCREEN";
 
 
+  static const String LOGIN_SCREEN = "LOGIN_SCREEN";
+  static const String SIGNUP_SCREEN = "SIGNUP_SCREEN";
+  static const String SPLASH_SCREEN = "SPLASH_SCREEN";
   static const String LOGIN = "Đăng nhập";
   static const String MY_ORDERS_TITLE = "Đơn hàng của tôi";
   static const String LOGIN_GOOGLE = "Đăng nhập bằng Google";
@@ -22,6 +25,21 @@ class Constants {
   static const String CONFIRM_PASSWORD = "Xác thực mật khẩu";
   static const String FULL_NAME = "Họ và tên";
   static const String DOUBLE_T = "DoubleT Sport";
+
+  // Dialog
+  static const String WARNING_TITLE = "Cảnh báo";
+  static const String NOTIFY_TITLE = "Thông báo";
+  static const String ERROR_TITLE = "Lỗi";
+  static const String MISS_FIELD =
+      "Có thông tin chưa được nhập. Vui lòng nhập đầy đủ thông tin.";
+  static const String INVALID_EMAIL = "Email không hợp lệ.";
+  static const String PASS_NO_MATCH = "Xác thực mật khẩu không trùng khớp.";
+  static const String REGISTER_FAILED = "Đăng ký thất bại. Vui lòng thử lại.";
+  static const String REGISTER_SUCCESS = "Đăng ký thành công.";
+  static const String I_KNOW = "Tôi biết rồi";
+  static const String WAIT = "Đợi một chút ...";
+  static const String LOGIN_FAILED = "Email hoặc mật khẩu không đúng.";
+  static const String NOT_ENOUGH_LENGTH = "Mật khẩu phải chứa ít nhất 8 kí tự.";
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);

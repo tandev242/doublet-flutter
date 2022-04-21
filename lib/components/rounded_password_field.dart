@@ -1,35 +1,49 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/Components/text_field_container.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+class RoundedPasswordField extends StatefulWidget {
   final String? hintText;
   final ValueChanged<String>? onChanged;
-  final bool? isSecurePassword;
   const RoundedPasswordField({
     this.hintText,
     this.onChanged,
-    this.isSecurePassword,
     Key? key,
   }) : super(key: key);
+
+  @override
+  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  bool isSecurePassword = true;
+
+  void setObscureText() {
+    setState(() {
+      isSecurePassword = !isSecurePassword;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
         child: TextField(
-      obscureText: isSecurePassword ?? false,
+      obscureText: isSecurePassword,
       decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           icon: Icon(
             Icons.lock,
             color: kPrimaryColor,
           ),
           suffixIcon: IconButton(
-              icon: Icon(Icons.visibility),
+              icon: Icon( isSecurePassword ? Icons.visibility : Icons.visibility_off),
               color: kPrimaryColor,
-              onPressed: () {}),
+              onPressed: setObscureText
+              ),
           border: InputBorder.none),
-      onChanged: onChanged,
+      onChanged: widget.onChanged,
     ));
   }
 }
