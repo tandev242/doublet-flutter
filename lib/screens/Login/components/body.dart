@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/Components/rounded_button.dart';
-import 'package:sp_shop_app/Constants/constants.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/components/background.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
 import '../../../Components/have_already_an_account.dart';
 import '../../../Components/rounded_input_field.dart';
 import '../../../Components/rounded_password_field.dart';
+import 'package:sp_shop_app/controllers/auth_controller.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -15,6 +17,12 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController authController = Get.put(AuthController());
+
+   void _login() {
+      authController.login();
+    }
+
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Column(
@@ -34,37 +42,29 @@ class Body extends StatelessWidget {
           RoundedInputField(
             hintText: Constants.EMAIL,
             icon: Icon(Icons.email),
+            onChanged: (value) {
+              authController.username.value = value;
+            },
           ),
           RoundedPasswordField(
             hintText: Constants.PASSWORD,
+            onChanged: (value) {
+              authController.password.value = value;
+            },
           ),
           RoundedButton(
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomeScreen();
-                    },
-                  ),
-                );
-              },
+              press:_login,
               text: Constants.LOGIN),
           RoundedButton(
-            press: () {},
+            press: () {
+              print(authController.username.value);
+            },
             text: Constants.LOGIN_GOOGLE,
             color: blueColor,
           ),
           HaveAlreadyAnAccountCheck(
             press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return SignUpScreen();
-                  },
-                ),
-              );
+              Get.to(SignUpScreen());
             },
           )
         ],

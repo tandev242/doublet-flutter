@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sp_shop_app/controllers/auth_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/SignUp/components/background.dart';
 import 'package:sp_shop_app/screens/SignUp/components/body.dart';

@@ -5,19 +5,18 @@ import '../utils/http.dart';
 class AuthApi {
   static Future<dynamic> login(data) async {
     try {
-      Response result = await http.post('/signin',
-          data: {"email": "superjunior242@gmail.com", "password": "matkhau1"});
+      Response result = await http.post('/signin',data: data);
       var res = result.data;
-      print(res["token"]);
+      print(res);
       return res;
     } catch (e) {
-      throw (e);
+      return null;
     }
   }
 
   static Future<dynamic> register(data) async {
     try {
-      Response result = await http.post('/register', data: data);
+      Response result = await http.post('/signup', data: data);
       var res = result.data;
       return res;
     } catch (e) {
