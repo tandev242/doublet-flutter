@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/screens/Home/components/body.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,6 +22,7 @@ class _HomeState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,

@@ -13,7 +13,7 @@ class Http {
     }
     http.dio.options.headers = {
       'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUwNDMwNTg3LCJleHAiOjE2NTA1MTY5ODd9.hYO5amJoaPKvM831oypoNpqO_JhiAuBjIeJvm3xcnks'
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUwNTQzMTgxLCJleHAiOjE2NTA2Mjk1ODF9._2is44t83DUEPGF7ZIW877S8WtVwprdimJ2kaNvWNSQ'
     };
   }
 

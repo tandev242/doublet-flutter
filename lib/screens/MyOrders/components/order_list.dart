@@ -54,7 +54,7 @@ class OrderList extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Mã: ' + orders[i].id,
+                          Text('Mã: ' + orders[i].id.substring(18, 24),
                               style: TextStyle(
                                   color: Colors.blue[800],
                                   fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class OrderList extends StatelessWidget {
                                                               slug: orders[i]
                                                                   .items[j]
                                                                   .product
-                                                                .slug)));
+                                                                  .slug)));
                                             },
                                             child: Text(
                                                 orders[i].items[j].product.name,

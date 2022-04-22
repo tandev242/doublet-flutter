@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home:  HomeScreen(),
-      home: WelcomeScreen(),
+      home: CartScreen(),
       routes: <String, WidgetBuilder>{
         Constants.PROFILE_SCREEN: (BuildContext context) => ProfileScreen(),
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),
