@@ -25,6 +25,8 @@ class Constants {
   static const String CONFIRM_PASSWORD = "Xác thực mật khẩu";
   static const String FULL_NAME = "Họ và tên";
   static const String DOUBLE_T = "DoubleT Sport";
+  static const String SEARCH_TEXT = "Nhập vào từ khóa";
+
 
   // Dialog
   static const String WARNING_TITLE = "Cảnh báo";

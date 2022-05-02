@@ -10,7 +10,6 @@ import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
-import 'package:sp_shop_app/screens/Collection/collection_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

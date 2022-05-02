@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/cart_api.dart';
+import 'package:sp_shop_app/apis/order_api.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
-class CartController extends GetxController {
-  var cartItems = [].obs;
+class OrderController extends GetxController {
+  var orders = [].obs;
 
-  getCart() async {
+  getOrders() async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      cartItems.value =  await CartApi.getCart();
+      orders.value = await OrderApi.getOrders();
     } catch (e) {
       print(e);
       EasyLoading.dismiss();

@@ -5,6 +5,7 @@ import 'package:sp_shop_app/apis/auth_api.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
   var name = ''.obs;
@@ -20,6 +21,8 @@ class AuthController extends GetxController {
       var result = await AuthApi.login(data);
       if (result != null) {
         EasyLoading.dismiss();
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', result.token);
         Get.to(HomeScreen());
       } else {
         EasyLoading.dismiss();
@@ -32,13 +35,13 @@ class AuthController extends GetxController {
         );
       }
     } catch (e) {
-       EasyLoading.dismiss();
+      EasyLoading.dismiss();
       Get.defaultDialog(
-          title: Constants.WARNING_TITLE,
-          titleStyle:
-              TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: Constants.LOGIN_FAILED,
-          textCancel: Constants.I_KNOW,
+        title: Constants.WARNING_TITLE,
+        titleStyle:
+            TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+        middleText: Constants.LOGIN_FAILED,
+        textCancel: Constants.I_KNOW,
       );
     }
   }
@@ -67,7 +70,7 @@ class AuthController extends GetxController {
         );
         return;
       }
-      if(password.value.length < 8){
+      if (password.value.length < 8) {
         Get.defaultDialog(
           title: Constants.WARNING_TITLE,
           titleStyle:
@@ -106,16 +109,16 @@ class AuthController extends GetxController {
           title: Constants.WARNING_TITLE,
           titleStyle:
               TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: Constants.REGISTER_FAILED ,
+          middleText: Constants.REGISTER_FAILED,
           textCancel: Constants.I_KNOW,
         );
       }
-      
     } catch (e) {
       EasyLoading.dismiss();
       Get.defaultDialog(
         title: Constants.WARNING_TITLE,
-        titleStyle: TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+        titleStyle:
+            TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
         middleText: Constants.REGISTER_FAILED,
         textCancel: Constants.I_KNOW,
       );

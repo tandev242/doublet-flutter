@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/order_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/controllers/order_controller.dart';
 import 'package:sp_shop_app/screens/MyOrders/components/order_list.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
@@ -14,12 +16,12 @@ class MyOrdersScreen extends StatefulWidget {
 }
 
 class MyOrdersScreenState extends State<MyOrdersScreen> {
-  late final Future<List> futureOrders;
+  final OrderController _orderController = Get.put(OrderController());
 
   @override
   void initState() {
     super.initState();
-    futureOrders = OrderApi.getOrders();
+    _orderController.getOrders();
   }
 
   @override
@@ -92,11 +94,11 @@ class MyOrdersScreenState extends State<MyOrdersScreen> {
                       Expanded(
                           child: TabBarView(
                         children: [
-                          OrderList(futureOrders: futureOrders),
-                          OrderList(futureOrders: futureOrders),
-                          OrderList(futureOrders: futureOrders),
-                          OrderList(futureOrders: futureOrders),
-                          OrderList(futureOrders: futureOrders)
+                          OrderList(orders: _orderController.orders),
+                          OrderList(orders: _orderController.orders),
+                          OrderList(orders: _orderController.orders),
+                          OrderList(orders: _orderController.orders),
+                          OrderList(orders: _orderController.orders)
                         ],
                       ))
                     ],

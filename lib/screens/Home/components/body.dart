@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/components/product_list.dart';
 import 'package:sp_shop_app/screens/Home/components/background.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.futureProducts}) : super(key: key);
+  Body({Key? key, required this.hotProducts, required this.featuredProducts}) : super(key: key);
 
-  final Future<List<dynamic>> futureProducts;
+  List hotProducts;
+  List featuredProducts;
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class Body extends StatelessWidget {
               fontWeight: FontWeight.bold),
           decoration: InputDecoration(
             filled: true,
-            hintText: 'Input search text',
+            hintText: Constants.SEARCH_TEXT,
             hintStyle: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
@@ -42,36 +45,36 @@ class Body extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Hot Products',
+            const Text('Sản phẩm mới',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
             TextButton(
                 onPressed: () {},
-                child: const Text('See all',
+                child: const Text('Xem thêm',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w900)))
           ],
         ),
         const SizedBox(height: 10),
-        ProductList(futureProducts: futureProducts),
+        ProductList(products: hotProducts),
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Featured Products',
+                'Sản phẩm hot',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
               ),
               TextButton(
                   onPressed: () {},
-                  child: const Text('See all',
+                  child: const Text('Xem thêm',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w900)))
             ],
           ),
         ),
         const SizedBox(height: 10),
-        ProductList(futureProducts: futureProducts),
+        ProductList(products: featuredProducts),
       ],
     ));
   }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/cart_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class CartScreen extends StatefulWidget {
+  const CartScreen({Key? key}) : super(key: key);
+
   @override
   _CartScreenState createState() => _CartScreenState();
 }
@@ -11,12 +15,12 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List picked = [];
   int totalAmount = 0;
-  late Future<List> futureCartItems;
+  final CartController _cartController = Get.put(CartController());
 
   @override
   void initState() {
     super.initState();
-    futureCartItems = CartApi.getCart();
+    _cartController.getCart();
   }
 
   pickToggle(index) {
@@ -50,12 +54,12 @@ class _CartScreenState extends State<CartScreen> {
         ),
         body: ListView(shrinkWrap: true, children: <Widget>[
           Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Stack(children: [
                   Stack(children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height,
+                      height: MediaQuery.of(context).size.height - 50.0,
                       width: double.infinity,
                     ),
                     Container(
@@ -85,51 +89,24 @@ class _CartScreenState extends State<CartScreen> {
                               borderRadius: BorderRadius.circular(150.0),
                               color: Color(0xFFFEE16D).withOpacity(0.5))),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 15.0),
-                      child: IconButton(
-                          alignment: Alignment.topLeft,
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {}),
-                    ),
                     Positioned(
-                      top: 20.0,
-                      child: FutureBuilder<List>(
-                        future: futureCartItems,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            List? cartItems = snapshot.data;
-                            return Column(
+                        top: 20.0,
+                        child: Obx(() => Column(
                               children: [
-                                for (int i = 0; i < cartItems!.length; i++)
+                                for (int i = 0;
+                                    i < _cartController.cartItems.length;
+                                    i++)
                                   itemCard(
-                                      cartItems[i].product.name,
-                                      cartItems[i].size.name,
-                                      cartItems[i].product.price.toString(),
-                                      cartItems[i].product.productPictures[0],
+                                      _cartController.cartItems[i].product.name,
+                                      _cartController.cartItems[i].size.name,
+                                      _cartController.cartItems[i].product.price
+                                          .toString(),
+                                      _cartController.cartItems[i].product
+                                          .productPictures[0],
                                       true,
                                       i),
                               ],
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                          }
-                          return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
-                                Center(
-                                    child: SizedBox(
-                                  height: 50.0,
-                                  width: 50.0,
-                                  child: CircularProgressIndicator(
-                                    value: null,
-                                    strokeWidth: 7.0,
-                                  ),
-                                ))
-                              ]);
-                        },
-                      ),
-                    ),
+                            ))),
                   ])
                 ]),
                 Align(
@@ -279,7 +256,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 255, 255, 97, 24)),
                                       )
                                     : Container(),
-                                   SizedBox(width: 20.0),
+                                SizedBox(width: 20.0),
                                 available
                                     ? picked.contains(i)
                                         ? Text(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sp_shop_app/apis/category_api.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/controllers/category_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Explore/components/category_list.dart';
 
@@ -14,11 +15,14 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   final TextEditingController _searchText = TextEditingController();
-  late final Future<List> futureCategories;
+  final CategoryController _categoryController = Get.put(CategoryController());
+
   @override
   void initState() {
     super.initState();
-    futureCategories = CategoryApi.getCategories();
+    if (_categoryController.categories.isEmpty) {
+      _categoryController.getCategories();
+    }
   }
 
   @override
@@ -47,7 +51,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   style: cExploreSearchTextStyle,
                   decoration: InputDecoration(
                       filled: true,
-                      hintText: 'Tìm kiếm ',
+                      hintText: Constants.SEARCH_TEXT,
                       hintStyle: cExploreSearchHintStyle,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
@@ -69,7 +73,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                CategoryList(futureCategories: futureCategories)
+                CategoryList(categories: _categoryController.categories)
               ],
             ),
           ),

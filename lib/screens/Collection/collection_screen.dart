@@ -34,6 +34,8 @@ class _CollectionScreenState extends State<CollectionScreen> {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
+
+            
             color: Colors.black,
           ),
         ),

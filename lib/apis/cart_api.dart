@@ -9,7 +9,6 @@ class CartApi {
       var res = result.data['cartItems']
           .map((item) => CartItem.fromJson(item))
           .toList();
-          print(res);
       return res;
     } catch (e) {
       throw (e);

@@ -13,16 +13,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeState extends State<HomeScreen> {
-  late Future<List<dynamic>> futureProducts;
+  final ProductController _productController = Get.put(ProductController());
+
   @override
   void initState() {
     super.initState();
-    futureProducts = ProductApi.getProducts();
+    if (_productController.hotProducts.isEmpty) {
+      _productController.getProducts();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -46,7 +48,9 @@ class _HomeState extends State<HomeScreen> {
                 ])
               ],
             ))),
-        body: Body(futureProducts: futureProducts),
+        body: Body(
+            hotProducts: _productController.hotProducts,
+            featuredProducts: _productController.featuredProducts),
         bottomNavigationBar: BottomNavigation());
   }
 }
