@@ -14,6 +14,17 @@ class CartApi {
       throw (e);
     }
   }
+  static Future<bool> addToCart(cartItems) async {
+    try {
+      Response res = await http.post('/cart/addToCart', data: cartItems);
+      if(res.statusCode == 201) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      throw (e);
+    }
+  }
 // router.post('/cart/addToCart', requireSignin, userMiddleware, addToCart);
 // router.get('/cart/getCartItems', requireSignin, userMiddleware, getCartItems);
 // router.post('/cart/removeItem', requireSignin, userMiddleware, removeCartItems);

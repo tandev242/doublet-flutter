@@ -95,10 +95,10 @@ class MyOrdersScreenState extends State<MyOrdersScreen> {
                           child: TabBarView(
                         children: [
                           OrderList(orders: _orderController.orders),
-                          OrderList(orders: _orderController.orders),
-                          OrderList(orders: _orderController.orders),
-                          OrderList(orders: _orderController.orders),
-                          OrderList(orders: _orderController.orders)
+                          OrderList(orders: _orderController.orderedOrders),
+                          OrderList(orders: _orderController.packedOrders),
+                          OrderList(orders: _orderController.shippedOrders),
+                          OrderList(orders: _orderController.completedOrders)
                         ],
                       ))
                     ],

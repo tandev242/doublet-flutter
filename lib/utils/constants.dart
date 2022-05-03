@@ -42,6 +42,8 @@ class Constants {
   static const String WAIT = "Đợi một chút ...";
   static const String LOGIN_FAILED = "Email hoặc mật khẩu không đúng.";
   static const String NOT_ENOUGH_LENGTH = "Mật khẩu phải chứa ít nhất 8 kí tự.";
+  static const String ADD_SUCCESSFULLY = "Thêm vào giỏ hàng thành công";
+  static const String OK = "OK";
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);

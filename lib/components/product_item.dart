@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key, required this.product}) : super(key: key);
+  ProductItem({Key? key, required this.product}) : super(key: key);
   final Product product;
+  final CartController _cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,14 @@ class ProductItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(17.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Object cartItem = {
+                  "product": product.id.toString(),
+                  "size": "6128b9993483fd6e2401b4e8",
+                  "quantity": 1
+                };
+                _cartController.addToCart(cartItem);
+              },
               child: Image.asset('assets/img/plus_sign.png',
                   height: 17, color: const Color(0xffffffff)),
             ),

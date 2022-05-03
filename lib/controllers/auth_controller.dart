@@ -21,8 +21,6 @@ class AuthController extends GetxController {
       var result = await AuthApi.login(data);
       if (result != null) {
         EasyLoading.dismiss();
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('token', result.token);
         Get.to(HomeScreen());
       } else {
         EasyLoading.dismiss();

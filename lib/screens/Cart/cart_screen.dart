@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/cart_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
+import 'package:sp_shop_app/screens/Cart/components/cart_item.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class CartScreen extends StatefulWidget {
@@ -13,35 +13,17 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List picked = [];
-  int totalAmount = 0;
   final CartController _cartController = Get.put(CartController());
-
   @override
   void initState() {
     super.initState();
     _cartController.getCart();
   }
 
-  pickToggle(index) {
-    setState(() {
-      if (picked.contains(index)) {
-        picked.remove(index);
-      } else {
-        picked.add(index);
-      }
-      getTotalAmount();
-    });
-  }
-
-  getTotalAmount() {
-    setState(() {
-      totalAmount = 50000 * picked.length;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    var minHeight = MediaQuery.of(context). size.height - 50;
+    
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -58,10 +40,10 @@ class _CartScreenState extends State<CartScreen> {
               children: <Widget>[
                 Stack(children: [
                   Stack(children: <Widget>[
-                    Container(
-                      height: MediaQuery.of(context).size.height - 50.0,
+                    Obx(() =>  Container(
+                      height: minHeight > 165 * _cartController.cartItems.length.toDouble() ? minHeight : 165 * _cartController.cartItems.length.toDouble(),
                       width: double.infinity,
-                    ),
+                    )),
                     Container(
                       height: 100.0,
                       width: double.infinity,
@@ -96,15 +78,9 @@ class _CartScreenState extends State<CartScreen> {
                                 for (int i = 0;
                                     i < _cartController.cartItems.length;
                                     i++)
-                                  itemCard(
-                                      _cartController.cartItems[i].product.name,
-                                      _cartController.cartItems[i].size.name,
-                                      _cartController.cartItems[i].product.price
-                                          .toString(),
-                                      _cartController.cartItems[i].product
-                                          .productPictures[0],
-                                      true,
-                                      i),
+                                  CartItemCard(
+                                      item: _cartController.cartItems[i],
+                                      available: true),
                               ],
                             ))),
                   ])
@@ -118,7 +94,8 @@ class _CartScreenState extends State<CartScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text('Total: \$' + totalAmount.toString()),
+                            Obx(() => Text('Total: \$' +
+                                _cartController.totalAmount.toString())),
                             SizedBox(width: 10.0),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -136,143 +113,5 @@ class _CartScreenState extends State<CartScreen> {
               ])
         ]),
         bottomNavigationBar: BottomNavigation());
-  }
-
-  Widget itemCard(itemName, size, price, imgPath, available, i) {
-    return InkWell(
-      onTap: () {
-        if (available) {
-          pickToggle(i);
-        }
-      },
-      child: Padding(
-          padding: EdgeInsets.only(left: 10, right: 10, bottom: 10.0),
-          child: Material(
-              borderRadius: BorderRadius.circular(10.0),
-              elevation: 3.0,
-              child: Container(
-                  padding: EdgeInsets.only(left: 15.0, right: 10.0),
-                  width: MediaQuery.of(context).size.width - 20.0,
-                  height: 150.0,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Row(
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                              height: 25.0,
-                              width: 25.0,
-                              decoration: BoxDecoration(
-                                color: available
-                                    ? Colors.grey.withOpacity(0.4)
-                                    : Colors.red.withOpacity(0.4),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              child: Center(
-                                  child: available
-                                      ? Container(
-                                          height: 12.0,
-                                          width: 12.0,
-                                          decoration: BoxDecoration(
-                                              color: picked.contains(i)
-                                                  ? Colors.yellow
-                                                  : Colors.grey
-                                                      .withOpacity(0.4),
-                                              borderRadius:
-                                                  BorderRadius.circular(6.0)),
-                                        )
-                                      : Container()))
-                        ],
-                      ),
-                      SizedBox(width: 10.0),
-                      Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(imgPath),
-                                fit: BoxFit.contain)),
-                      ),
-                      SizedBox(width: 15.0),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width - 220,
-                                child: Text(itemName,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.visible,
-                                    style: const TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                              SizedBox(width: 7.0)
-                            ],
-                          ),
-                          SizedBox(height: 7.0),
-                          available
-                              ? Text(
-                                  'Size: ' + size,
-                                  style: TextStyle(
-                                      fontFamily: 'Quicksand',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14.0,
-                                      color: Colors.grey),
-                                )
-                              : OutlineButton(
-                                  onPressed: () {},
-                                  borderSide: BorderSide(
-                                      color: Colors.red,
-                                      width: 1.0,
-                                      style: BorderStyle.solid),
-                                  child: Center(
-                                    child: Text('Find Similar',
-                                        style: TextStyle(
-                                            fontFamily: 'Quicksand',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12.0,
-                                            color: Colors.red)),
-                                  ),
-                                ),
-                          SizedBox(height: 7.0),
-                          Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                available
-                                    ? Text(
-                                        price,
-                                        style: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20.0,
-                                            color: Color.fromARGB(
-                                                255, 255, 97, 24)),
-                                      )
-                                    : Container(),
-                                SizedBox(width: 20.0),
-                                available
-                                    ? picked.contains(i)
-                                        ? Text(
-                                            'x1',
-                                            style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                fontSize: 20.0,
-                                                color: Colors.black),
-                                          )
-                                        : Container()
-                                    : Container()
-                              ]),
-                        ],
-                      )
-                    ],
-                  )))),
-    );
   }
 }
