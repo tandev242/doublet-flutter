@@ -50,7 +50,7 @@ class ProductItem extends StatelessWidget {
                 Object cartItem = {
                   "product": product.id.toString(),
                   "size": "6128b9993483fd6e2401b4e8",
-                  "quantity": 1
+                  "quantity": _cartController.getQuantityAfterVerified(product.id.toString(), "6128b9993483fd6e2401b4e8")
                 };
                 _cartController.addToCart(cartItem);
               },

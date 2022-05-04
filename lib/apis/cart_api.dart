@@ -25,7 +25,15 @@ class CartApi {
       throw (e);
     }
   }
-// router.post('/cart/addToCart', requireSignin, userMiddleware, addToCart);
-// router.get('/cart/getCartItems', requireSignin, userMiddleware, getCartItems);
-// router.post('/cart/removeItem', requireSignin, userMiddleware, removeCartItems);
+  static Future<bool> removeCartItem(cartItem) async {
+    try {
+      Response res = await http.post('/cart/removeItem', data: cartItem);
+      if(res.statusCode == 202) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      throw (e);
+    }
+  }
 }

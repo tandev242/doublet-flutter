@@ -141,7 +141,16 @@ class CartItemCard extends StatelessWidget {
                                       Container(
                                           alignment: Alignment.centerRight,
                                           child: InkResponse(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Object cartItem = {
+                                                "product":
+                                                    item.product!.id.toString(),
+                                                "size":
+                                                    item.size!.id.toString(),
+                                                "quantity": item.quantity - 1
+                                              };
+                                               _cartController.changeQuantityProductInCart(cartItem);
+                                            },
                                             child: const Padding(
                                               padding:
                                                   EdgeInsets.only(right: 10.0),
@@ -161,10 +170,19 @@ class CartItemCard extends StatelessWidget {
                                       Container(
                                           alignment: Alignment.centerRight,
                                           child: InkResponse(
-                                            onTap: () {},
+                                            onTap: () {
+                                               Object cartItem = {
+                                                "product":
+                                                    item.product!.id.toString(),
+                                                "size":
+                                                    item.size!.id.toString(),
+                                                "quantity": item.quantity + 1
+                                              };
+                                               _cartController.changeQuantityProductInCart(cartItem);
+                                            },
                                             child: const Padding(
                                               padding:
-                                                  EdgeInsets.only(left : 10.0),
+                                                  EdgeInsets.only(left: 10.0),
                                               child: Icon(
                                                 Icons.add,
                                                 color: Colors.red,
@@ -174,13 +192,20 @@ class CartItemCard extends StatelessWidget {
                                       Container(
                                           alignment: Alignment.centerRight,
                                           child: InkResponse(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Object cartItem = {
+                                                "product":
+                                                    item.product!.id.toString(),
+                                                "size":
+                                                    item.size!.id.toString()
+                                              };
+                                               _cartController.removeCartItem(cartItem);
+                                            },
                                             child: const Padding(
                                               padding:
                                                   EdgeInsets.only(left: 10.0),
                                               child: Icon(
-                                                Icons
-                                                    .delete,
+                                                Icons.delete,
                                                 color: Colors.red,
                                               ),
                                             ),
