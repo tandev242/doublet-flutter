@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/Components/rounded_button.dart';
 import 'package:sp_shop_app/utils/constants.dart';
-import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/components/background.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
 import '../../../Components/have_already_an_account.dart';
@@ -40,6 +39,7 @@ class Body extends StatelessWidget {
             height: size.height * 0.1,
           ),
           RoundedInputField(
+            labelText: Constants.EMAIL,
             hintText: Constants.EMAIL,
             icon: Icon(Icons.email),
             onChanged: (value) {
@@ -47,6 +47,7 @@ class Body extends StatelessWidget {
             },
           ),
           RoundedPasswordField(
+            labelText: Constants.PASSWORD,
             hintText: Constants.PASSWORD,
             onChanged: (value) {
               authController.password.value = value;

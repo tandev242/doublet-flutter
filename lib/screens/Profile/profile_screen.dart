@@ -1,19 +1,31 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/screens/Profile/components.dart/body.dart';
+import 'package:sp_shop_app/utils/constants.dart';
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({ Key? key }) : super(key: key);
 
-class ProfileScreen extends StatefulWidget {
   @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<ProfileScreen> {
-  
-   @override 
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.purple,
-
+      appBar: AppBar(
+        title: Text(Constants.PROFILE),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          ),
+        backgroundColor: kPrimaryColor,
+      ),
+      body: Body(),
+      bottomNavigationBar: BottomNavigation()
     );
   }
 }
+

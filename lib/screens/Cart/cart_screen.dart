@@ -40,16 +40,14 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          backgroundColor: kPrimaryColor,
           title: const Text(
-            'Giỏ hàng',
-            style: cMainTitleStyle,
+            'Giỏ hàng'
           ),
           centerTitle: true,
         ),
         body: ListView(shrinkWrap: true, children: <Widget>[
-          Column(
+          Column(  
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Stack(children: [
@@ -84,13 +82,6 @@ class _CartScreenState extends State<CartScreen> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(150.0),
                               color: Color(0xFFFEE16D).withOpacity(0.5))),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 15.0),
-                      child: IconButton(
-                          alignment: Alignment.topLeft,
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {}),
                     ),
                     Positioned(
                       top: 20.0,
