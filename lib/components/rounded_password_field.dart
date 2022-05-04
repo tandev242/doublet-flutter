@@ -7,9 +7,11 @@ import 'package:sp_shop_app/utils/constants.dart';
 class RoundedPasswordField extends StatefulWidget {
   final String? hintText;
   final ValueChanged<String>? onChanged;
+  final String? labelText;
   const RoundedPasswordField({
     this.hintText,
     this.onChanged,
+    this.labelText,
     Key? key,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
             Icons.lock,
             color: kPrimaryColor,
           ),
+          labelText: widget.labelText,
           suffixIcon: IconButton(
               icon: Icon( isSecurePassword ? Icons.visibility : Icons.visibility_off),
               color: kPrimaryColor,

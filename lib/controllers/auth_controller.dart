@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/auth_api.dart';
+import 'package:sp_shop_app/apis/delivery_api.dart';
+import 'package:sp_shop_app/entities/delivery.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
@@ -13,6 +15,7 @@ class AuthController extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
   var confirmPass = ''.obs;
+  final user = {};
 
   Future<dynamic> login() async {
     try {
@@ -22,13 +25,16 @@ class AuthController extends GetxController {
       if (result != null) {
         EasyLoading.dismiss();
         Get.to(HomeScreen());
+        user.addAll(result['user']);
+        var list = DeliveryApi.getListDelivery();
+        print({'List delivery : ${list}'});
       } else {
         EasyLoading.dismiss();
         Get.defaultDialog(
           title: Constants.WARNING_TITLE,
           titleStyle:
               TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: Constants.LOGIN_FAILED,
+          middleText: Constants.ERROR_TITLE,
           textCancel: Constants.I_KNOW,
         );
       }

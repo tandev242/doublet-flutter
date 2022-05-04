@@ -26,11 +26,9 @@ class _CartScreenState extends State<CartScreen> {
     
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          backgroundColor: kPrimaryColor,
           title: const Text(
-            'Giỏ hàng',
-            style: cMainTitleStyle,
+            'Giỏ hàng'
           ),
           centerTitle: true,
         ),

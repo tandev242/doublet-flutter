@@ -9,7 +9,7 @@ class Constants {
   static const String CART_SCREEN = "CART_SCREEN";
   static const String WELCOME_SCREEN = "WELCOME_SCREEN";
   static const String MY_ORDERS_SCREEN = "MY_ORDERS_SCREEN";
-
+  static const String EDIT_PROFILE_SCREEN = "EDIT_PROFILE_SCREEN";
 
   static const String LOGIN_SCREEN = "LOGIN_SCREEN";
   static const String SIGNUP_SCREEN = "SIGNUP_SCREEN";
@@ -28,6 +28,7 @@ class Constants {
   static const String SEARCH_TEXT = "Nhập vào từ khóa";
 
 
+  static const String PROFILE = "Tài khoản";
   // Dialog
   static const String WARNING_TITLE = "Cảnh báo";
   static const String NOTIFY_TITLE = "Thông báo";
@@ -44,6 +45,10 @@ class Constants {
   static const String NOT_ENOUGH_LENGTH = "Mật khẩu phải chứa ít nhất 8 kí tự.";
   static const String ADD_SUCCESSFULLY = "Thêm vào giỏ hàng thành công";
   static const String OK = "OK";
+  static const String SAVE = "Lưu";
+  static const String INFO = "Thông tin cá nhân";
+  static const String RECEIVE_ADDRESS = "Địa chỉ nhận hàng";
+  static const String EDIT_PASSWORD = "Thay đổi mật khẩu";
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);
