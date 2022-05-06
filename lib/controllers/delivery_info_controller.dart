@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/product_api.dart';
+import 'package:sp_shop_app/apis/delivery_info_api.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
-class ProductController extends GetxController {
-  var hotProducts = [].obs;
-  var featuredProducts = [].obs;
+class DeliveryInfoController extends GetxController {
+  var deliveryInfo = [].obs;
 
-  getProducts() async {
+  getDeliveryInfo() async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      hotProducts.value = await ProductApi.getProducts();
-      featuredProducts.value = hotProducts.reversed.toList();
+      deliveryInfo.value = await DeliveryInfoApi.getDeliveryInfo();
     } catch (e) {
       print(e);
       EasyLoading.dismiss();

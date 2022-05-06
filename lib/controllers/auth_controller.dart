@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/auth_api.dart';
-import 'package:sp_shop_app/apis/delivery_api.dart';
-import 'package:sp_shop_app/entities/delivery.dart';
+import 'package:sp_shop_app/apis/delivery_info_api.dart';
+import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
@@ -26,8 +26,10 @@ class AuthController extends GetxController {
         EasyLoading.dismiss();
         Get.to(HomeScreen());
         user.addAll(result['user']);
-        var list = DeliveryApi.getListDelivery();
-        print({'List delivery : ${list}'});
+        // after login successfully, we need to load us delivery info
+        DeliveryInfoController _deliveryInfoController =
+            Get.put(DeliveryInfoController());
+        _deliveryInfoController.getDeliveryInfo();
       } else {
         EasyLoading.dismiss();
         Get.defaultDialog(

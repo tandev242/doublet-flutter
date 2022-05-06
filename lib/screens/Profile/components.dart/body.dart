@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:sp_shop_app/screens/Address/address_screen.dart';
+import 'package:sp_shop_app/screens/DeliveryInfo/delivery_info_screen.dart';
 import 'package:sp_shop_app/screens/EditProfile/edit_profile_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 import 'package:sp_shop_app/screens/Profile/components.dart/profile_menu.dart';
@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
             text: "Địa chỉ nhận hàng",
             icon: "assets/icons/User Icon.svg",
             press: () => {
-             Get.to(AddressScreen())
+             Get.to(DeliveryInfoScreen())
             },
           ),
           ProfileMenu(

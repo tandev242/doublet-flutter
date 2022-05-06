@@ -3,8 +3,7 @@ import 'package:dio/dio.dart' show Dio, DioError;
 final Http http = Http();
 
 class Http {
-  // String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
-  String apiURL = 'https://api-sportswear.herokuapp.com/api';
+  String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
 
   final Dio dio = Dio();
   auth(token) {

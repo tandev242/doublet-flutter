@@ -4,7 +4,7 @@ import 'package:sp_shop_app/controllers/bottom_nav_controller.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
-import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
+import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -87,7 +87,7 @@ class BottomNavigation extends StatelessWidget {
                             _bottomNavController.setTab(Constants.PROFILE_SCREEN);
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return MyOrdersScreen();
+                              return ProfileScreen();
                             }));
                           },
                           child: Container(
