@@ -26,15 +26,14 @@ class AuthController extends GetxController {
         EasyLoading.dismiss();
         Get.to(HomeScreen());
         user.addAll(result['user']);
-        var list = DeliveryApi.getListDelivery();
-        print({'List delivery : ${list}'});
+        
       } else {
         EasyLoading.dismiss();
         Get.defaultDialog(
           title: Constants.WARNING_TITLE,
           titleStyle:
               TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: Constants.ERROR_TITLE,
+          middleText: Constants.LOGIN_FAILED,
           textCancel: Constants.I_KNOW,
         );
       }

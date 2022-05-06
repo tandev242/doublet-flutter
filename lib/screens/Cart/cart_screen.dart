@@ -32,84 +32,94 @@ class _CartScreenState extends State<CartScreen> {
           ),
           centerTitle: true,
         ),
-        body: ListView(shrinkWrap: true, children: <Widget>[
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Stack(children: [
-                  Stack(children: <Widget>[
-                    Obx(() =>  Container(
-                      height: minHeight > 165 * _cartController.cartItems.length.toDouble() ? minHeight : 165 * _cartController.cartItems.length.toDouble(),
-                      width: double.infinity,
-                    )),
-                    Container(
-                      height: 100.0,
-                      width: double.infinity,
-                      color: Color(0xFFFDD148),
-                    ),
-                    Positioned(
-                      bottom: 450.0,
-                      right: 100.0,
-                      child: Container(
-                        height: 400.0,
-                        width: 400.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(200.0),
-                          color: Color(0xFFFEE16D),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 200.0,
-                      left: 150.0,
-                      child: Container(
-                          height: 300.0,
-                          width: 300.0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(150.0),
-                              color: Color(0xFFFEE16D).withOpacity(0.5))),
-                    ),
-                    Positioned(
-                        top: 20.0,
-                        child: Obx(() => Column(
-                              children: [
-                                for (int i = 0;
-                                    i < _cartController.cartItems.length;
-                                    i++)
-                                  CartItemCard(
-                                      item: _cartController.cartItems[i],
-                                      available: true),
-                              ],
-                            ))),
-                  ])
-                ]),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                        height: 50.0,
-                        width: double.infinity,
-                        color: Colors.white,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Obx(() => Text('Total: \$' +
-                                _cartController.totalAmount.toString())),
-                            SizedBox(width: 10.0),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Center(
-                                  child: Text(
-                                    'Pay Now',
-                                  ),
-                                ),
+        body: Container(
+          child: Stack(
+            children:<Widget>[
+              ListView(shrinkWrap: true, children: <Widget>[
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Stack(children: [
+                        Stack(children: <Widget>[
+                          Obx(() =>  Container(
+                            height: minHeight > 165 * _cartController.cartItems.length.toDouble() ? minHeight : 165 * _cartController.cartItems.length.toDouble(),
+                            width: double.infinity,
+                          )),
+                          Container(
+                            height: 100.0,
+                            width: double.infinity,
+                            color: Color(0xFFFDD148),
+                          ),
+                          Positioned(
+                            bottom: 450.0,
+                            right: 100.0,
+                            child: Container(
+                              height: 400.0,
+                              width: 400.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(200.0),
+                                color: Color(0xFFFEE16D),
                               ),
-                            )
-                          ],
-                        )))
-              ])
-        ]),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 200.0,
+                            left: 150.0,
+                            child: Container(
+                                height: 300.0,
+                                width: 300.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(150.0),
+                                    color: Color(0xFFFEE16D).withOpacity(0.5))),
+                          ),
+                          Positioned(
+                              top: 20.0,
+                              child: Obx(() => Column(
+                                    children: [
+                                      for (int i = 0;
+                                          i < _cartController.cartItems.length;
+                                          i++)
+                                        CartItemCard(
+                                            item: _cartController.cartItems[i],
+                                            available: true),
+                                    ],
+                                  ))),
+                        ])
+                      ]),
+                      
+                    ]
+                  )
+                ]
+              ),
+              Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                              height: 50.0,
+                              width: double.infinity,
+                              color: Colors.white,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Obx(() => Text('Total: \$' +
+                                      _cartController.totalAmount.toString())),
+                                  SizedBox(width: 10.0),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Center(
+                                        child: Text(
+                                          'Pay Now',
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )))
+            ]
+          )
+        )
+        ,
         bottomNavigationBar: BottomNavigation());
   }
 }

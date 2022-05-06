@@ -13,6 +13,7 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return InkWell(
         onTap: () {
           if (available) {
@@ -38,8 +39,8 @@ class CartItemCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                  height: 25.0,
-                                  width: 25.0,
+                                  height: 18.0,
+                                  width: 18.0,
                                   decoration: BoxDecoration(
                                     color: available
                                         ? Colors.grey.withOpacity(0.4)
@@ -49,8 +50,8 @@ class CartItemCard extends StatelessWidget {
                                   child: Center(
                                       child: available
                                           ? Container(
-                                              height: 12.0,
-                                              width: 12.0,
+                                              height: 10.0,
+                                              width: 10.0,
                                               decoration: BoxDecoration(
                                                   color: _cartController.picked
                                                           .contains(item)
@@ -64,17 +65,17 @@ class CartItemCard extends StatelessWidget {
                                           : Container()))
                             ],
                           ),
-                          SizedBox(width: 10.0),
+                          SizedBox(width: 5.0),
                           Container(
-                            height: 150.0,
-                            width: 110.0,
+                            height: size.width / 5,
+                            width: size.width / 5,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         item.product?.productPictures[0]),
                                     fit: BoxFit.contain)),
                           ),
-                          SizedBox(width: 15.0),
+                          SizedBox(width: 10.0),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +84,10 @@ class CartItemCard extends StatelessWidget {
                                 children: <Widget>[
                                   Container(
                                     width:
-                                        MediaQuery.of(context).size.width - 220,
+                                        size.width - 200 ,
                                     child: Text(item.product!.name,
                                         maxLines: 2,
-                                        overflow: TextOverflow.visible,
+                                        overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontSize: 14,
@@ -127,16 +128,16 @@ class CartItemCard extends StatelessWidget {
                                   children: [
                                     available
                                         ? Text(
-                                            item.product!.price.toString(),
+                                             item.product!.price.toString() + 'đ',
                                             style: TextStyle(
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20.0,
+                                                fontSize: 15.0,
                                                 color: Color.fromARGB(
                                                     255, 255, 97, 24)),
                                           )
                                         : Container(),
-                                    SizedBox(width: 70.0),
+                                    SizedBox(width: 20.0),
                                     Row(children: [
                                       Container(
                                           alignment: Alignment.centerRight,
@@ -164,7 +165,7 @@ class CartItemCard extends StatelessWidget {
                                         '${item.quantity}',
                                         style: TextStyle(
                                             fontFamily: 'Montserrat',
-                                            fontSize: 20.0,
+                                            fontSize: 18.0,
                                             color: Colors.black),
                                       ),
                                       Container(
