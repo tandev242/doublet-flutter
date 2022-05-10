@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   runApp(const MyApp());

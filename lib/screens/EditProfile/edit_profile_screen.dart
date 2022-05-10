@@ -12,7 +12,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
-    final user = authController.user;
+    final user = authController.user.value;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -40,18 +40,18 @@ class EditProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              ProfilePic(),
+              ProfilePic(img: user.photo),
               SizedBox(
                 height: 20,
               ),
               RoundedInputField(
                 isReadOnly: true,
-                initialText: user['email'],
+                initialText: user.email,
                 // hintText: user['email'],
                 icon: Icon(Icons.mail),
               ),
               RoundedInputField(
-                initialText: user['name'],
+                initialText: user.name,
                 labelText: Constants.FULL_NAME,
                 hintText: Constants.FULL_NAME,
                 icon: Icon(Icons.people),

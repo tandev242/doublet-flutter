@@ -1,25 +1,26 @@
 import 'package:dio/dio.dart' show Dio, DioError;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Http http = Http();
 
 class Http {
-  // String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
-  String apiURL = 'https://api-sportswear.herokuapp.com/api';
-
+  String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
+  var tokenVip =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUxNDU5OTQzfQ.VZGbRdo0P1gLBqJY8o4npas9OGI3ZIZJ84NA3UiU61c';
   final Dio dio = Dio();
-  auth(token) {
+  auth() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = await prefs.getString('token');
     if (token != null) {
-      http.dio.options.headers = {'Authorization': 'Bearer $token'};
+      http.dio.options.headers = {'Authorization': 'Bearer ${token}'};
+    } else {
+      http.dio.options.headers = {'Authorization': 'Bearer ${tokenVip}'};
     }
-    http.dio.options.headers = {
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUxNDU5OTQzfQ.VZGbRdo0P1gLBqJY8o4npas9OGI3ZIZJ84NA3UiU61c'
-    };
   }
 
   get(String url, {data}) async {
-    auth(null);
     try {
+      await auth();
       return await dio.get('$apiURL/$url');
     } on DioError catch (e) {
       if (e.response != null) {
@@ -36,8 +37,8 @@ class Http {
   }
 
   post(String url, {data}) async {
-    auth(null);
     try {
+      await auth();
       return await dio.post("$apiURL/$url", data: data);
     } on DioError catch (e) {
       if (e.response != null) {

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/auth_api.dart';
-import 'package:sp_shop_app/apis/delivery_api.dart';
-import 'package:sp_shop_app/entities/delivery.dart';
+import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
+import 'package:sp_shop_app/entities/user.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
+import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sp_shop_app/utils/http.dart';
 
 class AuthController extends GetxController {
   var name = ''.obs;
@@ -15,7 +17,7 @@ class AuthController extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
   var confirmPass = ''.obs;
-  final user = {};
+  final user = User(name: '', role: '', email: '', photo: '').obs;
 
   Future<dynamic> login() async {
     try {
@@ -24,9 +26,16 @@ class AuthController extends GetxController {
       var result = await AuthApi.login(data);
       if (result != null) {
         EasyLoading.dismiss();
+        user.value = User.fromJson(result['user']);
+        String token = result['token'];
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+        await http.auth();
         Get.to(HomeScreen());
-        user.addAll(result['user']);
-        
+        // after login successfully, we need to load us delivery info
+        DeliveryInfoController _deliveryInfoController =
+            Get.put(DeliveryInfoController());
+        _deliveryInfoController.getDeliveryInfo();
       } else {
         EasyLoading.dismiss();
         Get.defaultDialog(
@@ -47,6 +56,18 @@ class AuthController extends GetxController {
         textCancel: Constants.I_KNOW,
       );
     }
+  }
+
+  Future<dynamic> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+    Get.to(WelcomeScreen());
+    Get.defaultDialog(
+      title: "Đăng xuất",
+      titleStyle: TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+      middleText: "Đăng xuất thành công",
+      textCancel: Constants.OK,
+    );
   }
 
   Future<dynamic> register() async {

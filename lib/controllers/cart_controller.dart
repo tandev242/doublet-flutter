@@ -47,7 +47,7 @@ class CartController extends GetxController {
 
   changeQuantityProductInCart(cartItem) async {
     EasyLoading.show(status: Constants.WAIT);
-    var cart = {
+    Object cart = {
       "cartItems": [cartItem]
     };
     if (cartItem["quantity"] >= 1) {
