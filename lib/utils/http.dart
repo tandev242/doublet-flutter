@@ -12,7 +12,7 @@ class Http {
     final prefs = await SharedPreferences.getInstance();
     var token = await prefs.getString('token');
     if (token != null) {
-      http.dio.options.headers = {'Authorization': 'Bearer ${token}'};
+      http.dio.options.headers = {'Authorization': 'Bearer ${tokenVip}'};
     } else {
       http.dio.options.headers = {'Authorization': 'Bearer ${tokenVip}'};
     }

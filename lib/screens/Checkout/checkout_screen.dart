@@ -9,24 +9,10 @@ import 'package:bs_flutter_selectbox/bs_flutter_selectbox.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
-    final CheckoutController c = Get.put(CheckoutController());
-    final DeliveryInfoController d = Get.put(DeliveryInfoController());
-    final items = [
-      'Dia chi 1',
-      'Dia chi 2',
-      'Dia chi 3',
-      'Dia chi 4',
-      'Dia chi 5'
-    ];
 
-    _getList(context, position) {
-      c.getList(context, position);
-    }
-
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(Constants.CHECKOUT),
@@ -42,7 +28,7 @@ class CheckoutScreen extends StatelessWidget {
         ),
         backgroundColor: kPrimaryColor,
       ),
-      body: Body(items: items, c: c, d: d),
+      body: Body(),
     );
   }
 }

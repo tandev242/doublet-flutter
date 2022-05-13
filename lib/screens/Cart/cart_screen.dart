@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/screens/Cart/components/cart_item.dart';
+import 'package:sp_shop_app/screens/Checkout/checkout_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class CartScreen extends StatefulWidget {
@@ -105,7 +106,22 @@ class _CartScreenState extends State<CartScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if(_cartController.picked.length > 0) {
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return CheckoutScreen();
+                            }));
+                            }else{
+                              Get.defaultDialog(
+                                title: "Cảnh báo",
+                                titleStyle:
+                                    TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+                                middleText: "Bạn phải chọn sản phẩm cần thanh toán !",
+                                textCancel: Constants.OK,
+                              );
+                            }
+                          },
                           child: Center(
                             child: Text(
                               'Pay Now',

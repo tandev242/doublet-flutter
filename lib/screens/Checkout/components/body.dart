@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/components/dropdown.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
+import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/controllers/checkout_controller.dart';
 import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
@@ -9,20 +10,16 @@ import 'package:sp_shop_app/utils/constants.dart';
 class Body extends StatelessWidget {
   const Body({
     Key? key,
-    required this.items,
-    required this.c,
-    required this.d,
   }) : super(key: key);
-
-  final List<String> items;
-  final CheckoutController c;
-  final DeliveryInfoController d;
 
   @override
   Widget build(BuildContext context) {
-    // PaymentType? _type = c.type.value;
-    // var listDelivery = d.getDeliveryInfo();
-    int itemCount = 3;
+    final CheckoutController _checkoutController =
+        Get.put(CheckoutController());
+    final DeliveryInfoController _deliveryInfoController =
+        Get.put(DeliveryInfoController());
+    final CartController _cartController = Get.put(CartController());
+
     return Container(
         color: Color.fromARGB(255, 245, 230, 232),
         child: Padding(
@@ -41,18 +38,17 @@ class Body extends StatelessWidget {
                   child: Wrap(
                     children: [
                       Container(
-                        height: itemCount < 2 ? 140.0 : 320.0,
+                        height: _cartController.picked.length < 2 ? 140.0 : 320.0,
                         child: ListView(
                           children: <Widget>[
-                            dummyDataOfListView("assets/img/Nike_Shoe_PNG.png",
-                                "Women T-Shirt", "Cloths", "500Rs", 4),
-                            dummyDataOfListView("assets/img/Nike_Shoe_PNG.png",
-                                "Women T-Shirt", "Cloths", "600Rs", 1),
-                            dummyDataOfListView("assets/img/Nike_Shoe_PNG.png",
-                                "Women T-Shirt", "Cloths", "800Rs", 3),
-                            // dummyDataOfListView("assets/img/Nike_Shoe_PNG.png","Women T-Shirt", "Cloths", "100Rs", 4),
-                            // dummyDataOfListView("assets/img/Nike_Shoe_PNG.png","Women T-Shirt", "Cloths", "1000Rs", 8),
-                            // dummyDataOfListView("assets/img/Nike_Shoe_PNG.png","Women T-Shirt", "Cloths", "5000Rs", 7),
+                            for (final item in _cartController.picked)
+                              dummyDataOfListView(
+                                  item.product.productPictures[0],
+                                  item.product.name,
+                                  item.size.name,
+                                  (item.quantity * item.product.price)
+                                      .toString(),
+                                  item.quantity),
                           ],
                         ),
                       )
@@ -72,27 +68,26 @@ class Body extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Dropdown(
-                          items: items,
-                          value: c.delivery.value,
+                          items: _deliveryInfoController.addresses,
+                          value: _deliveryInfoController
+                              .pickedAddress.value.address,
                           onChange: (value) async {
-                            print(value);
-                            c.delivery.value = value!;
-                            var listDelivery = await d.getDeliveryInfo();
-                            print(listDelivery);
+                            _deliveryInfoController.setPickedAddress(value);
                           },
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
                               Constants.RECEIVE_PEOPLE +
-                                  ': ${c.delivery.value}',
+                                  ': ${_deliveryInfoController.pickedAddress.value.name}',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w400)),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                              Constants.PHONE_NUMBER + ': ${c.delivery.value}',
+                              Constants.PHONE_NUMBER +
+                                  ': ${_deliveryInfoController.pickedAddress.value.phoneNumber}',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w400)),
                         ),
@@ -100,7 +95,7 @@ class Body extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
                               Constants.RECEIVE_ADDRESS +
-                                  ': ${c.delivery.value}',
+                                  ': ${_deliveryInfoController.pickedAddress.value.address}',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w400)),
                         ),
@@ -128,7 +123,7 @@ class Body extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "160.00",
+                                "${_cartController.totalAmount.value}",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,
@@ -151,7 +146,7 @@ class Body extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "10.00",
+                                "30.000",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,
@@ -174,7 +169,7 @@ class Body extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "170.00",
+                                "${_cartController.totalAmount.value + 30000} VND",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18.0,
@@ -193,41 +188,40 @@ class Body extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Obx(() => Container(
-                                child: Column(
-                                  
-                                  children: <Widget>[
-                                    ListTile(
-                                      title:
-                                          const Text('Thanh toán sau khi nhận hàng'),
-                                      leading: Radio<PaymentType>(
-                                        value: PaymentType.cod,
-                                        groupValue: c.type.value,
-                                        onChanged: (PaymentType? value) {
-                                          c.type.value = value!;
-                                          print(c.type.value);
-                                        },
-                                      ),
-                                    ),
-                                    ListTile(
-                                        title: const Text('Thanh toán qua ví Momo'),
-                                        leading: Radio<PaymentType>(
-                                          value: PaymentType.momo,
-                                          groupValue: c.type.value,
-                                          onChanged: (PaymentType? value) {
-                                            c.type.value = value!;
-                                            print(c.type.value);
-                                          },
-                                        ))
-                            ])))
+                        Container(
+                            child: Column(children: <Widget>[
+                          ListTile(
+                            title: const Text('Thanh toán sau khi nhận hàng'),
+                            leading: Radio<PaymentType>(
+                              value: PaymentType.cod,
+                              groupValue: _checkoutController.type.value,
+                              onChanged: (PaymentType? value) {
+                                _checkoutController.type.value = value!;
+                              },
+                            ),
+                          ),
+                          ListTile(
+                              title: const Text('Thanh toán qua ví Momo'),
+                              leading: Radio<PaymentType>(
+                                value: PaymentType.momo,
+                                groupValue: _checkoutController.type.value,
+                                onChanged: (PaymentType? value) {
+                                  _checkoutController.type.value = value!;
+                                },
+                              ))
+                        ]))
                       ],
                     )),
-                    RoundedButton(press: (){}, text: "Thanh toán")
+                RoundedButton(press: () {
+                  // items, addressId, totalAmount, paymentStatus, paymentType
+                  // _checkoutController.paymentOrder()
+
+                }, text: "Thanh toán")
               ],
             ))));
   }
 
-  dummyDataOfListView(String imgSrc, String itemName, String itemCategory,
+  dummyDataOfListView(String imgSrc, String itemName, String itemSize,
       String itemPrice, int itemCount) {
     return Container(
         child: Card(
@@ -242,7 +236,7 @@ class Body extends StatelessWidget {
         leading: Container(
           child: Image(
             fit: BoxFit.fitHeight,
-            image: AssetImage(imgSrc),
+            image: NetworkImage(imgSrc),
           ),
         ),
 
@@ -256,21 +250,21 @@ class Body extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(bottom: 2.0),
                 child: Text(
-                  "Item Name",
+                  itemName,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 3.0),
                 child: Text(
-                  "Thương hiệu/ Loại ",
+                  "Size: ${itemSize}",
                   style: TextStyle(),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 3.0),
                 child: Text(
-                  "500 VNĐ",
+                  "${itemPrice} VNĐ",
                   style: TextStyle(color: Color(0xff374ABE)),
                 ),
               ),
@@ -280,43 +274,12 @@ class Body extends StatelessWidget {
 
         // Item Add and Remove Container
         subtitle: Container(
-            child: Wrap(
-          direction: Axis.horizontal,
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                if (itemCount < 0) {
-                  itemCount = 0;
-                } else {
-                  itemCount--;
-                }
-              },
-              child: Icon(
-                Icons.remove,
-                size: 19.0,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10.0, top: 1.0, right: 10.0),
-              child: Text(
-                itemCount.toString(),
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-
-            // Add count button
-            GestureDetector(
-              onTap: () {
-                itemCount++;
-              },
-              child: Icon(
-                Icons.add,
-                size: 19.0,
-              ),
-            ),
-          ],
-        )
-      ),
+          padding: EdgeInsets.only(left: 10.0, top: 1.0, right: 10.0),
+          child: Text(
+            itemCount.toString(),
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
       ),
     ));
   }
