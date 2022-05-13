@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sp_shop_app/screens/ChangePassword/change_password_screen.dart';
+import 'package:sp_shop_app/screens/Checkout/checkout_screen.dart';
 import 'package:sp_shop_app/screens/EditProfile/edit_profile_screen.dart';
+import 'package:sp_shop_app/screens/ForgetPassword/forget_password_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -10,6 +13,7 @@ import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
+import 'package:sp_shop_app/screens/otp/otp_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class MyApp extends StatelessWidget {
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white),
-      home: WelcomeScreen(),
+      home: ForgetPasswordScreen(),
       routes: <String, WidgetBuilder>{
         Constants.PROFILE_SCREEN: (BuildContext context) => ProfileScreen(),
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),

@@ -15,6 +15,76 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bs_flutter:
+    dependency: "direct main"
+    description:
+      name: bs_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.7"
+  bs_flutter_alert:
+    dependency: transitive
+    description:
+      name: bs_flutter_alert
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  bs_flutter_buttons:
+    dependency: transitive
+    description:
+      name: bs_flutter_buttons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.8"
+  bs_flutter_card:
+    dependency: transitive
+    description:
+      name: bs_flutter_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  bs_flutter_datatable:
+    dependency: transitive
+    description:
+      name: bs_flutter_datatable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.5"
+  bs_flutter_inputtext:
+    dependency: transitive
+    description:
+      name: bs_flutter_inputtext
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
+  bs_flutter_modal:
+    dependency: transitive
+    description:
+      name: bs_flutter_modal
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
+  bs_flutter_responsive:
+    dependency: transitive
+    description:
+      name: bs_flutter_responsive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  bs_flutter_selectbox:
+    dependency: transitive
+    description:
+      name: bs_flutter_selectbox
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
+  bs_flutter_utils:
+    dependency: transitive
+    description:
+      name: bs_flutter_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   buttons_tabbar:
     dependency: "direct main"
     description:
@@ -142,6 +212,41 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
+  google_sign_in:
+    dependency: "direct main"
+    description:
+      name: google_sign_in
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.1"
+  google_sign_in_android:
+    dependency: transitive
+    description:
+      name: google_sign_in_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.7"
+  google_sign_in_ios:
+    dependency: transitive
+    description:
+      name: google_sign_in_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.7"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.3"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.1+2"
   http_parser:
     dependency: transitive
     description:
@@ -289,6 +394,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   shared_preferences:
     dependency: "direct main"
     description:

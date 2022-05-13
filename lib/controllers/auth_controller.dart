@@ -10,7 +10,15 @@ import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sp_shop_app/utils/http.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  clientId: "707494384451-n2h8k22labbk1hqo3abuen1i5kdp40dn.apps.googleusercontent.com",
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
 class AuthController extends GetxController {
   var name = ''.obs;
   var username = ''.obs;
@@ -19,6 +27,13 @@ class AuthController extends GetxController {
   var confirmPass = ''.obs;
   final user = User(name: '', role: '', email: '', photo: '').obs;
 
+  Future<void> handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
   Future<dynamic> login() async {
     try {
       var data = {"email": username.value, "password": password.value};

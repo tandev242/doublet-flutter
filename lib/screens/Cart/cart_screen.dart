@@ -23,7 +23,6 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     var minHeight = MediaQuery.of(context).size.height - 50;
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
@@ -51,10 +50,10 @@ class _CartScreenState extends State<CartScreen> {
                       Container(
                         height: 100.0,
                         width: double.infinity,
-                        color: Color.fromARGB(255, 233, 180, 131),
+                        color: Color(0xFFFDD148),
                       ),
                       Positioned(
-                        top: 100.0,
+                        bottom: 450.0,
                         right: 100.0,
                         child: Container(
                           height: 400.0,
@@ -66,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                       Positioned(
-                        bottom: 100.0,
+                        bottom: 200.0,
                         left: 150.0,
                         child: Container(
                             height: 300.0,

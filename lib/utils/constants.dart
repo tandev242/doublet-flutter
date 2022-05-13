@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_shop_app/size_config.dart';
 
 class Constants {
   static const String HOME_SCREEN = "HOME_SCREEN";
@@ -27,7 +28,6 @@ class Constants {
   static const String DOUBLE_T = "DoubleT Sport";
   static const String SEARCH_TEXT = "Nhập vào từ khóa";
 
-
   static const String PROFILE = "Tài khoản";
   // Dialog
   static const String WARNING_TITLE = "Cảnh báo";
@@ -49,6 +49,20 @@ class Constants {
   static const String INFO = "Thông tin cá nhân";
   static const String RECEIVE_ADDRESS = "Địa chỉ nhận hàng";
   static const String EDIT_PASSWORD = "Thay đổi mật khẩu";
+  static const String CHECKOUT = "Chi tiết đơn hàng";
+  static const String PRODUCT_LIST_CHECKOUT = "Sản phẩm";
+  static const String DELIVERY_INFO = "Thông tin giao hàng";
+  static const String RECEIVE_PEOPLE = "Người nhận";
+  static const String PHONE_NUMBER = "Số điện thoại";
+  static const String ADDRESS = "Địa chỉ";
+  static const String OTP_VERIFICATION = "Xác thực OTP";
+  static const String RESEND_OTP = "Tôi không nhận được mã. Hãy gửi lại!";
+  static const String SUMMARY = "Tổng cộng";
+  static const String PAYMENT_TYPE = "Hình thức thanh toán";
+  static const String ORDER_PRICE = "Giá tiền: ";
+  static const String SHIPPING_FEE = "Phí vận chuyển: ";
+  static const String TOTAL = "Tổng cộng: ";
+  static const String FORGET_PASSWORD = "Quên mật khẩu";
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);
@@ -59,7 +73,7 @@ const cMainColor = Color(0xff53B175);
 const cTextColor = Color(0xff181725);
 const cWhiteColor = Color(0xffffffff);
 const cSubtitleTextColor = Color(0xff7C7C7C);
-
+const kTextColor = Color(0xFF757575);
 const List cExploreBackgroundColorLists = [
   [
     Color(0x1053B175),
@@ -160,3 +174,25 @@ const cCartProductPriceTextStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
     letterSpacing: 1);
+
+final otpInputDecoration = InputDecoration(
+  contentPadding:
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
+  border: outlineInputBorder(),
+  focusedBorder: outlineInputBorder(),
+  enabledBorder: outlineInputBorder(),
+);
+
+OutlineInputBorder outlineInputBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(getProportionateScreenWidth(15)),
+    borderSide: BorderSide(color: kTextColor),
+  );
+}
+
+final headingStyle = TextStyle(
+  fontSize: getProportionateScreenWidth(28),
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+  height: 1.5,
+);

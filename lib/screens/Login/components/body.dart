@@ -18,8 +18,12 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
 
-   void _login() {
+    void _login() {
       authController.login();
+    }
+
+    void _loginByGoogleEmail() {
+      authController.handleSignIn();
     }
 
     Size size = MediaQuery.of(context).size;
@@ -53,12 +57,10 @@ class Body extends StatelessWidget {
               authController.password.value = value;
             },
           ),
-          RoundedButton(
-              press:_login,
-              text: Constants.LOGIN),
+          RoundedButton(press: _login, text: Constants.LOGIN),
           RoundedButton(
             press: () {
-              print(authController.username.value);
+              _loginByGoogleEmail();
             },
             text: Constants.LOGIN_GOOGLE,
             color: blueColor,
