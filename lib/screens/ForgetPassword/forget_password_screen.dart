@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/components/rounded_input_field.dart';
 import 'package:sp_shop_app/screens/SignUp/components/background.dart';
+import 'package:sp_shop_app/screens/otp/otp_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -34,7 +36,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               labelText: Constants.EMAIL,
               onChanged: (value) {}),
           SizedBox(height: 100.0),
-          RoundedButton(press: (){}, text: "Gửi mã xác nhận")
+          RoundedButton(press: (){Get.to(OtpScreen());}, text: "Gửi mã xác nhận")
         ]
         )
       )

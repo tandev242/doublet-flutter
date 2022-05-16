@@ -4,6 +4,7 @@ import 'package:sp_shop_app/Components/rounded_button.dart';
 import 'package:sp_shop_app/Components/rounded_input_field.dart';
 import 'package:sp_shop_app/components/have_already_an_account.dart';
 import 'package:sp_shop_app/components/rounded_password_field.dart';
+import 'package:sp_shop_app/screens/ForgetPassword/forget_password_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Login/components/background.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
@@ -40,7 +41,7 @@ class Body extends StatelessWidget {
           ),
           Image.asset("assets/img/logo.png", height: size.height * 0.2),
           SizedBox(
-            height: size.height * 0.1,
+            height: size.height * 0.08,
           ),
           RoundedInputField(
             labelText: Constants.EMAIL,
@@ -58,6 +59,17 @@ class Body extends StatelessWidget {
             },
           ),
           RoundedButton(press: _login, text: Constants.LOGIN),
+          HaveAlreadyAnAccountCheck(
+            press: () {
+              Get.to(ForgetPasswordScreen());
+            },
+          ),
+          SizedBox(
+            height: size.height * 0.05,
+          ),
+          RoundedButton(press: () {
+              Get.to(SignUpScreen());
+            }, text: Constants.SIGN_UP),
           RoundedButton(
             press: () {
               _loginByGoogleEmail();
@@ -65,11 +77,7 @@ class Body extends StatelessWidget {
             text: Constants.LOGIN_GOOGLE,
             color: blueColor,
           ),
-          HaveAlreadyAnAccountCheck(
-            press: () {
-              Get.to(SignUpScreen());
-            },
-          )
+          
         ],
       ),
     );

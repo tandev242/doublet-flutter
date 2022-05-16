@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white),
-      home: HomeScreen(),
+      home: LoginScreen(),
       routes: <String, WidgetBuilder>{
         Constants.PROFILE_SCREEN: (BuildContext context) => ProfileScreen(),
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),

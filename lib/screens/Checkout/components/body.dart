@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sp_shop_app/components/dropdown.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
@@ -19,7 +20,7 @@ class Body extends StatelessWidget {
     final DeliveryInfoController _deliveryInfoController =
         Get.put(DeliveryInfoController());
     final CartController _cartController = Get.put(CartController());
-
+    print(_deliveryInfoController.addresses);
     return Container(
         color: Color.fromARGB(255, 245, 230, 232),
         child: Padding(
@@ -38,7 +39,8 @@ class Body extends StatelessWidget {
                   child: Wrap(
                     children: [
                       Container(
-                        height: _cartController.picked.length < 2 ? 140.0 : 320.0,
+                        height:
+                            _cartController.picked.length < 2 ? 140.0 : 320.0,
                         child: ListView(
                           children: <Widget>[
                             for (final item in _cartController.picked)
@@ -123,7 +125,7 @@ class Body extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "${_cartController.totalAmount.value}",
+                                "${_cartController.totalAmount.value} VNĐ",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,
@@ -146,7 +148,7 @@ class Body extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "30.000",
+                                "30.000 VNĐ",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,
@@ -212,11 +214,12 @@ class Body extends StatelessWidget {
                         ]))
                       ],
                     )),
-                RoundedButton(press: () {
-                  // items, addressId, totalAmount, paymentStatus, paymentType
-                  // _checkoutController.paymentOrder()
-
-                }, text: "Thanh toán")
+                RoundedButton(
+                    press: () {
+                      // items, addressId, totalAmount, paymentStatus, paymentType
+                      // _checkoutController.paymentOrder()
+                    },
+                    text: "Thanh toán")
               ],
             ))));
   }
@@ -251,21 +254,23 @@ class Body extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 2.0),
                 child: Text(
                   itemName,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                  maxLines: 2,
+                  overflow: TextOverflow.visible,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 3.0),
                 child: Text(
                   "Size: ${itemSize}",
-                  style: TextStyle(),
+                  style: TextStyle(fontSize: 12.0),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 3.0),
                 child: Text(
-                  "${itemPrice} VNĐ",
-                  style: TextStyle(color: Color(0xff374ABE)),
+                  "Giá tiền: ${itemPrice}đ",
+                  style: TextStyle(color: Color(0xff374ABE), fontSize: 12.0),
                 ),
               ),
             ],
@@ -276,8 +281,8 @@ class Body extends StatelessWidget {
         subtitle: Container(
           padding: EdgeInsets.only(left: 10.0, top: 1.0, right: 10.0),
           child: Text(
-            itemCount.toString(),
-            style: TextStyle(color: Colors.black),
+            "Số lượng:" + itemCount.toString(),
+            style: TextStyle(color: Colors.black, fontSize: 12.0),
           ),
         ),
       ),

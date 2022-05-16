@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sp_shop_app/controllers/auth_controller.dart';
+import 'package:sp_shop_app/screens/ChangePassword/change_password_screen.dart';
 import 'package:sp_shop_app/screens/DeliveryInfo/delivery_info_screen.dart';
 import 'package:sp_shop_app/screens/EditProfile/edit_profile_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
@@ -37,7 +38,7 @@ class Body extends StatelessWidget {
             icon: "assets/icons/User Icon.svg",
             press: () => {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return EditProfileScreen();
+                return ChangePasswordScreen();
               }))
             },
           ),
