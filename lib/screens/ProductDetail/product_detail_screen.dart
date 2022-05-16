@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sp_shop_app/apis/product_api.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/entities/product.dart';
+import 'package:sp_shop_app/controllers/cart_controller.dart';
+import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/screens/ProductDetail/components/product_thumb.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -13,16 +14,19 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class ProductDetailScreenState extends State<ProductDetailScreen> {
-  late final Future<Product> futureProduct;
+
+  final ProductController _productController = Get.put(ProductController());
+  final CartController _cartController = Get.put(CartController());
 
   @override
   void initState() {
     super.initState();
-    futureProduct = ProductApi.getProductBySlug(widget.slug);
+    _productController.getProduct(widget.slug);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -47,7 +51,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
         body: SingleChildScrollView(
           child: Align(
               alignment: Alignment.center,
-              child: ProductThumb(futureProduct: futureProduct)),
+              child: Obx(() => ProductThumb(product: _productController.productBySlug.value))),
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
@@ -61,7 +65,14 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                 borderRadius: BorderRadius.circular(19.0),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Object cartItem = {
+                  "product": _productController.productBySlug.value.id.toString(),
+                  "size": "6128b9993483fd6e2401b4e8",
+                  "quantity": _cartController.getQuantityAfterVerified(_productController.productBySlug.value.id.toString(), "6128b9993483fd6e2401b4e8", _productController.quantitySelected)
+                };
+                _cartController.addToCart(cartItem);
+            },
             child: const SizedBox(
               width: double.infinity,
               child: Center(

@@ -84,11 +84,11 @@ class CartController extends GetxController {
     }
   }
 
-  getQuantityAfterVerified(productId, sizeId) {
+  getQuantityAfterVerified(productId, sizeId, quantity) {
     for (int i = 0; i < cartItems.length; i++) {
       if (cartItems[i].product.id == productId &&
           cartItems[i].size.id == sizeId) {
-        return cartItems[i].quantity + 1;
+        return cartItems[i].quantity + quantity;
       }
     }
     return 1;

@@ -216,8 +216,11 @@ class Body extends StatelessWidget {
                     )),
                 RoundedButton(
                     press: () {
-                      // items, addressId, totalAmount, paymentStatus, paymentType
-                      // _checkoutController.paymentOrder()
+                      List items = _cartController.picked;
+                      String addressId = _deliveryInfoController.pickedAddress.value.id;
+                      int totalAmount = _cartController.totalAmount.value + 30000;
+                      _checkoutController.purchaseOrder(items, addressId, totalAmount);
+                      _cartController.picked.value = [];
                     },
                     text: "Thanh toán")
               ],

@@ -23,4 +23,14 @@ class AuthApi {
       throw (e);
     }
   }
+
+  static Future<dynamic> isUserLoggedIn(data) async {
+    try {
+      Response result = await http.post('/signup', data: data);
+      var res = result.data;
+      return res;
+    } catch (e) {
+      throw (e);
+    }
+  }
 }

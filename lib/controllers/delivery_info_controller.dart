@@ -8,19 +8,21 @@ import 'package:sp_shop_app/utils/constants.dart';
 class DeliveryInfoController extends GetxController {
   var deliveryInfo = [].obs;
   var pickedAddress =
-      Address(id: '', name: '', phoneNumber: '', address: '', isDefault: true).obs;
+      Address(id: '', name: '', phoneNumber: '', address: '', isDefault: true)
+          .obs;
   var addresses = <String>[];
   var addressesValue = <String>[];
 
   mapAddressesToDropDown(list) {
-    for(final item in list){
+    for (final item in list) {
       addresses.add(item.address);
       addressesValue.add(item.id);
     }
   }
-  
+
   setPickedAddress(value) {
-    pickedAddress.value = deliveryInfo.firstWhere((item) => item.address == value);
+    pickedAddress.value =
+        deliveryInfo.firstWhere((item) => item.address == value);
   }
 
   getDeliveryInfo() async {

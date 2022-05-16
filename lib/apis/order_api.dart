@@ -8,8 +8,18 @@ class OrderApi {
       Response result = await http.post('/order/getOrders');
       var res =
           result.data['orders'].map((item) => Order.fromJson(item)).toList();
-      print(res);
       return res;
+    } catch (e) {
+      throw (e);
+    }
+  }
+  static Future<bool> addOrder(payload) async {
+    try {
+      Response res = await http.post('/order/add', data: payload);
+      if(res.statusCode == 201) {
+        return true;
+      }
+      return false;
     } catch (e) {
       throw (e);
     }

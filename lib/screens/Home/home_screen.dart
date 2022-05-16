@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/screens/Home/components/body.dart';
 
@@ -15,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeState extends State<HomeScreen> {
   final ProductController _productController = Get.put(ProductController());
-  final DeliveryInfoController _deliveryInfoController = Get.put(DeliveryInfoController());
 
   @override
   void initState() {
@@ -23,7 +20,6 @@ class _HomeState extends State<HomeScreen> {
     if (_productController.hotProducts.isEmpty) {
       _productController.getProducts();
     }
-    _deliveryInfoController.getDeliveryInfo();
   }
 
   @override

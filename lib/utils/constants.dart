@@ -63,6 +63,9 @@ class Constants {
   static const String SHIPPING_FEE = "Phí vận chuyển: ";
   static const String TOTAL = "Tổng cộng: ";
   static const String FORGET_PASSWORD = "Quên mật khẩu";
+  static const String ADD_ORDER_SUCCESSFULLY = "Xem đơn hàng";
+  static const String BACK_TO_CART = "Quay về giỏ hàng";
+
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);

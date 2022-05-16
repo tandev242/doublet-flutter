@@ -3,6 +3,7 @@ import 'app.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() async {
+  
   runApp(const MyApp());
   configLoading();
 }
