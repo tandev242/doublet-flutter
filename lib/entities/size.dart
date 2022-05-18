@@ -1,5 +1,5 @@
 class Size {
-  final String id;
+  late final String id;
   final String name;
   final String description;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductItem extends StatelessWidget {
   ProductItem({Key? key, required this.product}) : super(key: key);
@@ -35,8 +36,8 @@ class ProductItem extends StatelessWidget {
           bottom: 5,
           right: 5,
           child: SizedBox(
-            width: 45,
-            height: 45,
+            width: 60,
+            height: 40,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 onPrimary: Colors.black,
@@ -54,8 +55,9 @@ class ProductItem extends StatelessWidget {
                 };
                 _cartController.addToCart(cartItem);
               },
-              child: Image.asset('assets/img/plus_sign.png',
-                  height: 17, color: const Color(0xffffffff)),
+              // child: Image.asset('assets/img/plus_sign.png',
+              //     height: 10, color: const Color(0xffffffff)),
+              child: Icon(Icons.add, color: whiteColor),
             ),
           ),
         ),

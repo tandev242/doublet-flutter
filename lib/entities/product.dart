@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sp_shop_app/entities/brand.dart';
 import 'package:sp_shop_app/entities/category.dart';
 import 'package:sp_shop_app/entities/review.dart';
@@ -10,26 +12,36 @@ class Product {
   final String? description;
   final List productPictures;
   final int price;
-
-  Product({
-    required this.id,
-    required this.name,
-    required this.slug,
-    required this.price,
-    required this.productPictures,
-    required this.description,
-  });
+  final List sizes;
+  Product(
+      {required this.id,
+      required this.name,
+      required this.slug,
+      required this.price,
+      required this.productPictures,
+      required this.description,
+      required this.sizes});
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    final a = '';
     return Product(
-        id: json['_id'] as String,
-        name: json['name'] as String,
-        slug: json['slug'] as String,
-        price: json['price'] as int,
-        description: json['description'] ?? '',
-        productPictures: ((json['productPictures'] ?? []) as List).map((i) {
-          return i['img'];
-        }).toList());
+      id: json['_id'] as String,
+      name: json['name'] as String,
+      slug: json['slug'] as String,
+      price: json['price'] as int,
+      description: json['description'] ?? '',
+      productPictures: ((json['productPictures'] ?? []) as List).map((i) {
+        return i['img'];
+      }).toList(),
+      sizes: ((json['sizes'] ?? []) as List).map((i) {
+        print(i);
+        String id = i['_id'];
+        String size = i['size'];
+        String description = i['description'];
+        Size sizeItem = jsonDecode(id + size + description);
+        return sizeItem;
+      }).toList(),
+    );
   }
 }
 

@@ -124,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
                           },
                           child: Center(
                             child: Text(
-                              'Pay Now',
+                              'Thanh toán',
                             ),
                           ),
                         ),

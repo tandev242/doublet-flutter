@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/screens/DeliveryInfo/components/card_item.dart';
+import 'package:sp_shop_app/utils/constants.dart';
 
 class DeliveryInfoScreen extends StatefulWidget {
   const DeliveryInfoScreen({Key? key}) : super(key: key);
@@ -75,6 +76,7 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('AnimatedList'),
+        backgroundColor: kPrimaryColor,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add_circle),

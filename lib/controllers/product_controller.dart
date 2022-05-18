@@ -10,13 +10,14 @@ class ProductController extends GetxController {
   var featuredProducts = [].obs;
   var productsByCategory = [].obs;
   var productBySlug = Product(
-          id: '',
-          name: '',
-          slug: '',
-          description: '',
-          productPictures: [],
-          price: 0)
-      .obs;
+      id: '',
+      name: '',
+      slug: '',
+      description: '',
+      productPictures: [],
+      price: 0,
+      sizes: []
+      ).obs;
   var quantitySelected = 1.obs;
 
   onChangeQuantity(quantity) {
@@ -70,6 +71,7 @@ class ProductController extends GetxController {
     try {
       EasyLoading.show(status: Constants.WAIT);
       productBySlug.value = await ProductApi.getProductBySlug(slug);
+      
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.dismiss();
