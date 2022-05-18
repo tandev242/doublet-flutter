@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-import 'package:sp_shop_app/entities/brand.dart';
-import 'package:sp_shop_app/entities/category.dart';
-import 'package:sp_shop_app/entities/review.dart';
 import 'package:sp_shop_app/entities/size.dart';
 
 class Product {
@@ -23,7 +18,6 @@ class Product {
       required this.sizes});
 
   factory Product.fromJson(Map<String, dynamic> json) {
-    final a = '';
     return Product(
       id: json['_id'] as String,
       name: json['name'] as String,
@@ -36,9 +30,9 @@ class Product {
       sizes: ((json['sizes'] ?? []) as List).map((i) {
         print(i);
         String id = i['_id'];
-        String size = i['size'];
-        String description = i['description'];
-        Size sizeItem = jsonDecode(id + size + description);
+        String size = i['size']['size'];
+        String description = i['size']['description'];
+        Size sizeItem = Size(id: id, name: size, description: description);
         return sizeItem;
       }).toList(),
     );
