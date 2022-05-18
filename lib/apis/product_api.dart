@@ -11,7 +11,7 @@ class ProductApi {
           .toList();
       return products;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -23,7 +23,7 @@ class ProductApi {
           .toList();
       return products;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -33,7 +33,7 @@ class ProductApi {
       var product = Product.fromJson(result.data["product"]);
       return product;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 }
