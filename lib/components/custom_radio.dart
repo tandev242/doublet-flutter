@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sp_shop_app/controllers/product_controller.dart';
 
 class CustomRadio extends StatefulWidget {
   const CustomRadio({Key? key}) : super(key: key);
@@ -8,25 +10,29 @@ class CustomRadio extends StatefulWidget {
 }
 
 class _CustomRadioState extends State<CustomRadio> {
-  List<String> lst = ["31", "32", "33", "34"];
-  
- 
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final ProductController _productController = Get.put(ProductController());
+    List<String> sizes = _productController.getListSizesByProduct();
+    List<String> lst = [];
+
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height,
-      width: double.infinity,
-      child: Row(
-        children: <Widget>[
-              customR(lst[0],0),
-              customR(lst[1],1),
-              customR(lst[2],2),
-              customR(lst[3],3),
-          
-        ],
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: SingleChildScrollView(
+        child: Row(
+          children: <Widget>[
+            ListView(
+              children: [
+                customR(lst[0], 0),
+                customR(lst[1], 1),
+                customR(lst[2], 2),
+                customR(lst[3], 3),
+              ],
+            )
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
       ),
     );
   }
@@ -42,7 +48,6 @@ class _CustomRadioState extends State<CustomRadio> {
         onPressed: () {
           changeIndex(index);
         },
-        
         style: OutlinedButton.styleFrom(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),

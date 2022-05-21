@@ -20,51 +20,53 @@ class Body extends StatelessWidget {
 
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              Constants.SIGN_UP.toUpperCase(),
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: kPrimaryColor),
-            ),
-            Image.asset("assets/img/logo.png", height: size.height * 0.2),
-            RoundedInputField(
-              icon: Icon(Icons.people, color: kPrimaryColor),
-              hintText: Constants.FULL_NAME,
-              onChanged: (value) {
-                authController.name.value = value;
-              },
-            ),
-            RoundedInputField(
-              icon: Icon(Icons.email, color: kPrimaryColor),
-              hintText: Constants.EMAIL,
-              onChanged: (value) {
-                authController.username.value = value;
-                authController.email.value = value;
-              },
-            ),
-            RoundedPasswordField(
-              hintText: Constants.PASSWORD,
-              onChanged: (value) {
-                authController.password.value = value;
-              },
-            ),
-            RoundedPasswordField(
-              hintText: Constants.CONFIRM_PASSWORD,
-               onChanged: (value) {
-                authController.confirmPass.value = value;
-              },
-            ),
-            RoundedButton(press: _register, text: Constants.SIGN_UP),
-            HaveAlreadyAnAccountCheck(
-                press: () {
-                  Get.to(LoginScreen());
+      child: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                Constants.SIGN_UP.toUpperCase(),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: kPrimaryColor),
+              ),
+              Image.asset("assets/img/logo.png", height: size.height * 0.2),
+              RoundedInputField(
+                icon: Icon(Icons.people, color: kPrimaryColor),
+                hintText: Constants.FULL_NAME,
+                onChanged: (value) {
+                  authController.name.value = value;
                 },
-                login: true),
-          ]),
+              ),
+              RoundedInputField(
+                icon: Icon(Icons.email, color: kPrimaryColor),
+                hintText: Constants.EMAIL,
+                onChanged: (value) {
+                  authController.username.value = value;
+                  authController.email.value = value;
+                },
+              ),
+              RoundedPasswordField(
+                hintText: Constants.PASSWORD,
+                onChanged: (value) {
+                  authController.password.value = value;
+                },
+              ),
+              RoundedPasswordField(
+                hintText: Constants.CONFIRM_PASSWORD,
+                 onChanged: (value) {
+                  authController.confirmPass.value = value;
+                },
+              ),
+              RoundedButton(press: _register, text: Constants.SIGN_UP),
+              HaveAlreadyAnAccountCheck(
+                  press: () {
+                    Get.to(LoginScreen());
+                  },
+                  login: true),
+            ]),
+      ),
     );
   }
 }

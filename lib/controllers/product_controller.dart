@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/entities/product.dart';
+import 'package:sp_shop_app/entities/size.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductController extends GetxController {
@@ -16,8 +17,7 @@ class ProductController extends GetxController {
       description: '',
       productPictures: [],
       price: 0,
-      sizes: []
-      ).obs;
+      sizes: []).obs;
   var quantitySelected = 1.obs;
 
   onChangeQuantity(quantity) {
@@ -25,6 +25,15 @@ class ProductController extends GetxController {
     if (flag + quantity > 0) {
       quantitySelected += quantity;
     }
+  }
+
+  List<String> getListSizesByProduct() {
+    List<String> sizes = [];
+    print(productBySlug.value.sizes);
+    productBySlug.value.sizes
+        .map((item) => item);
+    print({"List Sizes String : $sizes"});
+    return sizes;
   }
 
   getProducts() async {
@@ -71,7 +80,7 @@ class ProductController extends GetxController {
     try {
       EasyLoading.show(status: Constants.WAIT);
       productBySlug.value = await ProductApi.getProductBySlug(slug);
-      
+
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.dismiss();

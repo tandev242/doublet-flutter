@@ -7,10 +7,12 @@ import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
+import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
+import 'package:sp_shop_app/screens/SuccessScreen/success_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/otp/otp_screen.dart';
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white),
-      home: HomeScreen(),
+      home: LoginScreen(),
       routes: <String, WidgetBuilder>{
         Constants.PROFILE_SCREEN: (BuildContext context) => ProfileScreen(),
         Constants.HOME_SCREEN: (BuildContext context) => HomeScreen(),

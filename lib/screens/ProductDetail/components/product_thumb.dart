@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:sp_shop_app/components/custom_radio.dart';
 import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
 import 'package:flutter/material.dart';
@@ -160,33 +161,16 @@ class ProductThumbState extends State<ProductThumb> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Sizes",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
-                ),
-                Row(
+                Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: Color(0xffEBEBEB),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "[37], [38], [39]",
-                          style: TextStyle(
-                              color: Color(0xff7C7C7C),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      ),
+                    Text(
+                      "Sizes",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset('assets/icons/backarrow.svg'))
+                    CustomRadio()
                   ],
                 )
+                
               ],
             ),
             Row(

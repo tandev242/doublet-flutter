@@ -29,56 +29,58 @@ class Body extends StatelessWidget {
 
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            Constants.LOGIN.toUpperCase(),
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: kPrimaryColor),
-          ),
-          Image.asset("assets/img/logo.png", height: size.height * 0.2),
-          SizedBox(
-            height: size.height * 0.08,
-          ),
-          RoundedInputField(
-            labelText: Constants.EMAIL,
-            hintText: Constants.EMAIL,
-            icon: Icon(Icons.email),
-            onChanged: (value) {
-              authController.username.value = value;
-            },
-          ),
-          RoundedPasswordField(
-            labelText: Constants.PASSWORD,
-            hintText: Constants.PASSWORD,
-            onChanged: (value) {
-              authController.password.value = value;
-            },
-          ),
-          RoundedButton(press: _login, text: Constants.LOGIN),
-          HaveAlreadyAnAccountCheck(
-            press: () {
-              Get.to(ForgetPasswordScreen());
-            },
-          ),
-          SizedBox(
-            height: size.height * 0.05,
-          ),
-          RoundedButton(press: () {
-              Get.to(SignUpScreen());
-            }, text: Constants.SIGN_UP),
-          RoundedButton(
-            press: () {
-              _loginByGoogleEmail();
-            },
-            text: Constants.LOGIN_GOOGLE,
-            color: blueColor,
-          ),
-          
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              Constants.LOGIN.toUpperCase(),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor),
+            ),
+            Image.asset("assets/img/logo.png", height: size.height * 0.15),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            RoundedInputField(
+              labelText: Constants.EMAIL,
+              hintText: Constants.EMAIL,
+              icon: Icon(Icons.email),
+              onChanged: (value) {
+                authController.username.value = value;
+              },
+            ),
+            RoundedPasswordField(
+              labelText: Constants.PASSWORD,
+              hintText: Constants.PASSWORD,
+              onChanged: (value) {
+                authController.password.value = value;
+              },
+            ),
+            RoundedButton(press: _login, text: Constants.LOGIN),
+            HaveAlreadyAnAccountCheck(
+              press: () {
+                Get.to(ForgetPasswordScreen());
+              },
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            RoundedButton(press: () {
+                Get.to(SignUpScreen());
+              }, text: Constants.SIGN_UP),
+            // RoundedButton(
+            //   press: () {
+            //     _loginByGoogleEmail();
+            //   },
+            //   text: Constants.LOGIN_GOOGLE,
+            //   color: blueColor,
+            // ),
+            
+          ],
+        ),
       ),
     );
   }
