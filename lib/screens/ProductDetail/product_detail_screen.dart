@@ -63,7 +63,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                   "size": _productController.sizeSelected.value,
                   "quantity": _cartController.getQuantityAfterVerified(
                       _productController.productBySlug.value.id.toString(),
-                      "6128b9993483fd6e2401b4e8",
+                       _productController.sizeSelected.value,
                       _productController.quantitySelected)
                 };
                 _cartController.addToCart(cartItem);

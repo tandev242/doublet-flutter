@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/apis/product_api.dart';
+import 'package:sp_shop_app/components/custom_radio.dart';
+import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
 import 'package:sp_shop_app/entities/size.dart';
+import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductController extends GetxController {
+  final CartController _cartController = Get.put(CartController());
   var hotProducts = [].obs;
   var featuredProducts = [].obs;
   var productsByCategory = [].obs;
@@ -20,7 +24,7 @@ class ProductController extends GetxController {
       sizes: []).obs;
   var sizeSelected = ''.obs;
   var quantitySelected = 1.obs;
-
+  var isReadyToBuy = false.obs;
   onChangeQuantity(quantity) {
     int flag = quantitySelected.value;
     if (flag + quantity > 0) {
@@ -84,5 +88,28 @@ class ProductController extends GetxController {
         textCancel: Constants.I_KNOW,
       );
     }
+  }
+
+  addToCart(Product product) {
+    Get.defaultDialog(
+      title: "Chọn size",
+      content: CustomRadio(),
+      textConfirm: "Xác nhận",
+      onConfirm: () {
+        Object cartItem = {
+          "product": product.id.toString(),
+          "size": sizeSelected.value,
+          "quantity": _cartController.getQuantityAfterVerified(
+              product.id.toString(), sizeSelected.value, 1)
+        };
+        print(cartItem);
+        // _cartController.addToCart(cartItem);
+        // Get.to(() => CartScreen());
+      },
+      textCancel: "Hủy",
+      onCancel: () {
+        isReadyToBuy.value = false;
+      },
+    );
   }
 }

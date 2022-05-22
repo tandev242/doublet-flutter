@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
+import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
@@ -8,6 +9,11 @@ class ProductItem extends StatelessWidget {
   ProductItem({Key? key, required this.product}) : super(key: key);
   final Product product;
   final CartController _cartController = Get.put(CartController());
+  final ProductController _productController = Get.put(ProductController());
+
+  addToCart(Product product) {
+    _productController.addToCart(product);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,23 +47,21 @@ class ProductItem extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 onPrimary: Colors.black,
-                primary: const Color(0xff53B175),
+                primary: kPrimaryColor,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(17.0),
                 ),
               ),
               onPressed: () {
-                Object cartItem = {
-                  "product": product.id.toString(),
-                  "size": "6128b9993483fd6e2401b4e8",
-                  "quantity": _cartController.getQuantityAfterVerified(product.id.toString(), "6128b9993483fd6e2401b4e8", 1)
-                };
-                _cartController.addToCart(cartItem);
+                addToCart(product);       
               },
               // child: Image.asset('assets/img/plus_sign.png',
               //     height: 10, color: const Color(0xffffffff)),
-              child: Icon(Icons.add, color: whiteColor),
+              child: Icon(
+                Icons.add,
+                color: whiteColor,
+              ),
             ),
           ),
         ),
