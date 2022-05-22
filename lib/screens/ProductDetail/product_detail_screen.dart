@@ -15,7 +15,6 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class ProductDetailScreenState extends State<ProductDetailScreen> {
-
   final ProductController _productController = Get.put(ProductController());
   final CartController _cartController = Get.put(CartController());
 
@@ -27,7 +26,6 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -52,19 +50,27 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
         body: SingleChildScrollView(
           child: Align(
               alignment: Alignment.center,
-              child: Obx(() => ProductThumb(product: _productController.productBySlug.value))),
+              child: Obx(() => ProductThumb(
+                  product: _productController.productBySlug.value))),
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-          child: RoundedButton(press: (){
-            Object cartItem = {
-                  "product": _productController.productBySlug.value.id.toString(),
-                  "size": "6128b9993483fd6e2401b4e8",
-                  "quantity": _cartController.getQuantityAfterVerified(_productController.productBySlug.value.id.toString(), "6128b9993483fd6e2401b4e8", _productController.quantitySelected)
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+            child: RoundedButton(
+              press: () {
+                Object cartItem = {
+                  "product":
+                      _productController.productBySlug.value.id.toString(),
+                  "size": _productController.sizeSelected.value,
+                  "quantity": _cartController.getQuantityAfterVerified(
+                      _productController.productBySlug.value.id.toString(),
+                      "6128b9993483fd6e2401b4e8",
+                      _productController.quantitySelected)
                 };
                 _cartController.addToCart(cartItem);
-          }, text: "Thêm vào giỏ",)
-        ),
+                print(cartItem);
+              },
+              text: "Thêm vào giỏ",
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: BottomNavigation());
   }

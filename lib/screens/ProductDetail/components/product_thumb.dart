@@ -167,29 +167,15 @@ class ProductThumbState extends State<ProductThumb> {
                       "Sizes",
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                     ),
-                    CustomRadio()
+                    
                   ],
                 )
                 
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Review",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
-                ),
-                Row(
-                  children: [
-                    Image.asset("assets/img/star.png"),
-                    IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset('assets/icons/backarrow.svg'))
-                  ],
-                )
-              ],
-            )
+            CustomRadio(),
+            SizedBox(height: 20.0,)
+            
           ],
         ),
       ),

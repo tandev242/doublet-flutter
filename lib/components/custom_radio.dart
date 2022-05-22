@@ -14,47 +14,46 @@ class _CustomRadioState extends State<CustomRadio> {
   @override
   Widget build(BuildContext context) {
     final ProductController _productController = Get.put(ProductController());
-    List<String> sizes = _productController.getListSizesByProduct();
-    List<String> lst = [];
+    List sizes = _productController.productBySlug.value.sizes;
+    List lst = ["1", "2", "3", "4", "5", "6"];
 
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      child: SingleChildScrollView(
-        child: Row(
-          children: <Widget>[
-            ListView(
-              children: [
-                customR(lst[0], 0),
-                customR(lst[1], 1),
-                customR(lst[2], 2),
-                customR(lst[3], 3),
-              ],
-            )
-          ],
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
+    void changeIndex(int index) {
+      setState(() {
+        selectedIndex = index;
+        _productController.sizeSelected.value = sizes[index].id;
+        print(_productController.sizeSelected.value);
+      });
+    }
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: <Widget>[
+          for (int i = 0; i < sizes.length; i++)
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: OutlinedButton(
+                    onPressed: () {
+                      changeIndex(i);
+                    },
+                    style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        side: BorderSide(
+                            color: selectedIndex == i
+                                ? Colors.red
+                                : Color.fromARGB(255, 59, 58, 58))),
+                    child: Text(sizes[i].name.toString(),
+                        style: TextStyle(
+                          fontWeight: selectedIndex == i
+                              ? FontWeight.bold
+                              : FontWeight.w400,
+                          color: selectedIndex == i
+                              ? Colors.red
+                              : Color.fromARGB(255, 59, 58, 58),
+                        ))))
+        ],
       ),
     );
-  }
-
-  void changeIndex(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
-  Widget customR(String desc, int index) {
-    return OutlinedButton(
-        onPressed: () {
-          changeIndex(index);
-        },
-        style: OutlinedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            side: BorderSide(
-                color: selectedIndex == index
-                    ? Colors.red
-                    : Color.fromARGB(255, 59, 58, 58))),
-        child: Text(desc, style: TextStyle()));
   }
 }
