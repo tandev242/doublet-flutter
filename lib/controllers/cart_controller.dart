@@ -84,12 +84,25 @@ class CartController extends GetxController {
     }
   }
 
+  // getQuantityAfterVerified(productId, sizeId, quantity) {
+  //   for (int i = 0; i < cartItems.length; i++) {
+  //     if (cartItems[i].product.id == productId &&
+  //         cartItems[i].size.id == sizeId) {
+  //       return cartItems[i].quantity + quantity;
+  //     }
+  //   }
+  //   return 1;
+  // }
   getQuantityAfterVerified(productId, sizeId, quantity) {
-    for (int i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].product.id == productId &&
-          cartItems[i].size.id == sizeId) {
-        return cartItems[i].quantity + quantity;
+    try {
+      for (int i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].product.id == productId &&
+            cartItems[i].size.id == sizeId) {
+          return cartItems[i].quantity + quantity;
+        }
       }
+    } catch (e) {
+      printError(info: e.toString());
     }
     return 1;
   }
