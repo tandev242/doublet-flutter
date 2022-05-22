@@ -11,7 +11,8 @@ class ProductItem extends StatelessWidget {
   final CartController _cartController = Get.put(CartController());
   final ProductController _productController = Get.put(ProductController());
 
-  addToCart(Product product) {
+  addToCart(Product product) async {
+    await _productController.getProduct(product.slug);
     _productController.addToCart(product);
   }
 
@@ -54,7 +55,7 @@ class ProductItem extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                addToCart(product);       
+                addToCart(product);
               },
               // child: Image.asset('assets/img/plus_sign.png',
               //     height: 10, color: const Color(0xffffffff)),
