@@ -50,6 +50,7 @@ class AuthController extends GetxController {
         // after login successfully, we need to load us delivery info
         DeliveryInfoController _deliveryInfoController =
             Get.put(DeliveryInfoController());
+        _deliveryInfoController.getDeliveryInfo();
      
       } else {
         EasyLoading.dismiss();

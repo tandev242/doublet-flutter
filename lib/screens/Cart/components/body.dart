@@ -87,8 +87,8 @@ class Body extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Obx(() => Text('Total: \$' +
-                      _cartController.totalAmount.toString())),
+                  Obx(() => Text('Tổng: ' +
+                      _cartController.totalAmount.toString() + " VND")),
                   SizedBox(width: 10.0),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

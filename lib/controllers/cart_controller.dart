@@ -69,8 +69,9 @@ class CartController extends GetxController {
   }
 
   pickToggle(item) {
-    if (picked.contains(item)) {
-      picked.remove(item);
+    if (isCartItemPicked(item)) {
+      picked.removeWhere(
+          (e) => e.product.id == item.product.id && e.size.id == item.size.id);
     } else {
       picked.add(item);
     }
@@ -84,15 +85,16 @@ class CartController extends GetxController {
     }
   }
 
-  // getQuantityAfterVerified(productId, sizeId, quantity) {
-  //   for (int i = 0; i < cartItems.length; i++) {
-  //     if (cartItems[i].product.id == productId &&
-  //         cartItems[i].size.id == sizeId) {
-  //       return cartItems[i].quantity + quantity;
-  //     }
-  //   }
-  //   return 1;
-  // }
+  isCartItemPicked(item) {
+    for (var pickedItem in picked) {
+      if (pickedItem.product.id == item.product.id &&
+          pickedItem.size.id == item.size.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   getQuantityAfterVerified(productId, sizeId, quantity) {
     try {
       for (int i = 0; i < cartItems.length; i++) {
@@ -110,7 +112,10 @@ class CartController extends GetxController {
   getCart() async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      cartItems.value = await CartApi.getCart();
+      var cart = await CartApi.getCart();
+      if (cart.isNotEmpty) {
+        cartItems.value = cart;
+      }
     } catch (e) {
       print(e);
       EasyLoading.dismiss();

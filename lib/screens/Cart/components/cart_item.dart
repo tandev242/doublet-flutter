@@ -53,8 +53,7 @@ class CartItemCard extends StatelessWidget {
                                               height: 10.0,
                                               width: 10.0,
                                               decoration: BoxDecoration(
-                                                  color: _cartController.picked
-                                                          .contains(item)
+                                                  color: _cartController.isCartItemPicked(item)
                                                       ? Colors.yellow
                                                       : Colors.grey
                                                           .withOpacity(0.4),

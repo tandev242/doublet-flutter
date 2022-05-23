@@ -12,7 +12,7 @@ class ProductItem extends StatelessWidget {
   final ProductController _productController = Get.put(ProductController());
 
   addToCart(Product product) async {
-    await _productController.getProduct(product.slug);
+    _productController.productBySlug.value = product;
     _productController.addToCart(product);
   }
 

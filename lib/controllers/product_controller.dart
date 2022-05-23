@@ -5,8 +5,6 @@ import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/custom_radio.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
-import 'package:sp_shop_app/entities/size.dart';
-import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductController extends GetxController {
@@ -95,6 +93,7 @@ class ProductController extends GetxController {
       title: "Chọn size",
       content: CustomRadio(),
       textConfirm: "Xác nhận",
+      confirmTextColor: Colors.white,
       onConfirm: () {
         Object cartItem = {
           "product": product.id.toString(),
@@ -102,9 +101,7 @@ class ProductController extends GetxController {
           "quantity": _cartController.getQuantityAfterVerified(
               product.id.toString(), sizeSelected.value, 1)
         };
-        print(cartItem);
-        // _cartController.addToCart(cartItem);
-        // Get.to(() => CartScreen());
+        _cartController.addToCart(cartItem);
       },
       textCancel: "Hủy",
       onCancel: () {

@@ -28,7 +28,7 @@ class Product {
         return i['img'];
       }).toList(),
       sizes: ((json['sizes'] ?? []) as List).map((i) {
-        String id = i['_id'];
+        String id = i['size']['_id'];
         String size = i['size']['size'];
         String description = i['size']['description'];
         Size sizeItem = Size(id: id, name: size, description: description);
