@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
+import 'package:sp_shop_app/controllers/behavior_controller.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/screens/ProductDetail/components/product_thumb.dart';
@@ -17,7 +18,7 @@ class ProductDetailScreen extends StatefulWidget {
 class ProductDetailScreenState extends State<ProductDetailScreen> {
   final ProductController _productController = Get.put(ProductController());
   final CartController _cartController = Get.put(CartController());
-
+  final BehaviorController _behaviorController = Get.put(BehaviorController());
   @override
   void initState() {
     super.initState();
@@ -63,11 +64,12 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                   "size": _productController.sizeSelected.value,
                   "quantity": _cartController.getQuantityAfterVerified(
                       _productController.productBySlug.value.id.toString(),
-                       _productController.sizeSelected.value,
+                      _productController.sizeSelected.value,
                       _productController.quantitySelected)
                 };
                 _cartController.addToCart(cartItem);
-                print(cartItem);
+                _behaviorController.addBehavior(
+                    _productController.productBySlug.value.id, "addToCart");
               },
               text: "Thêm vào giỏ",
             )),

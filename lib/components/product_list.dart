@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:sp_shop_app/components/product_item.dart';
-import 'package:sp_shop_app/entities/product.dart';
+import 'package:sp_shop_app/controllers/behavior_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 
 class ProductList extends StatelessWidget {
   ProductList({Key? key, required this.products}) : super(key: key);
   List products;
+  final BehaviorController _behaviorController = Get.put(BehaviorController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class ProductList extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 15),
                   child: InkWell(
                     onTap: () {
+                      _behaviorController.addBehavior(products[index].id, "view");
                       Navigator.push(
                         context,
                         MaterialPageRoute(

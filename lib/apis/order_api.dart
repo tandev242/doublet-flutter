@@ -24,7 +24,4 @@ class OrderApi {
       throw (e);
     }
   }
-// router.post('/cart/addToCart', requireSignin, userMiddleware, addToCart);
-// router.get('/cart/getCartItems', requireSignin, userMiddleware, getCartItems);
-// router.post('/cart/removeItem', requireSignin, userMiddleware, removeCartItems);
 }

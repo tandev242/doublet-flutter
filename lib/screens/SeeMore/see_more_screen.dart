@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/controllers/category_controller.dart';
 import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
-import 'package:sp_shop_app/screens/Collection/components/collection_list.dart';
+import 'package:sp_shop_app/screens/SeeMore/components/see_more_list.dart';
 
-class CollectionScreen extends StatefulWidget {
-  final String name;
-  final String slug;
-  const CollectionScreen({Key? key, required this.name, required this.slug})
+class SeeMoreScreen extends StatelessWidget {
+  SeeMoreScreen({Key? key, required this.name, required this.type})
       : super(key: key);
-
-  @override
-  State<CollectionScreen> createState() => _CollectionScreenState();
-}
-
-class _CollectionScreenState extends State<CollectionScreen> {
+  final String type;
+  final String name;
+  
   final ProductController _productController = Get.put(ProductController());
-
-  @override
-  void initState() {
-    super.initState();
-    _productController.getProductsByCategory(widget.slug);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +29,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
             ),
           ),
           backgroundColor: Colors.transparent,
-          title: Text(widget.name),
+          title: Text(name),
           centerTitle: true,
           actions: [
             IconButton(
@@ -70,7 +57,10 @@ class _CollectionScreenState extends State<CollectionScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                CollectionList(products: _productController.productsByCategory)
+                if(type == "recommend")
+                  SeeMoreList(products: _productController.recommendedProducts)
+                else
+                  SeeMoreList(products: _productController.featuredProducts)
               ],
             ),
           ),

@@ -36,4 +36,30 @@ class ProductApi {
       rethrow;
     }
   }
+
+  static Future<List<dynamic>> getRecommendedProductsByBehavior() async {
+    try {
+      Response result =
+          await http.post('/recom/getRecommendedProductsByBehavior');
+      var products = result.data["products"]
+          .map((product) => Product.fromJson(product))
+          .toList();
+      return products;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<List<dynamic>> getProductsSearched(text) async {
+    try {
+      Response result =
+          await http.post('/recom/searchByProductName', data: text);
+      var products = result.data["products"]
+          .map((product) => Product.fromJson(product))
+          .toList();
+      return products;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

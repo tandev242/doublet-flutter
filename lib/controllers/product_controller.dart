@@ -9,9 +9,10 @@ import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductController extends GetxController {
   final CartController _cartController = Get.put(CartController());
-  var hotProducts = [].obs;
+  var recommendedProducts = [].obs;
   var featuredProducts = [].obs;
   var productsByCategory = [].obs;
+  var productSearched = [].obs;
   var productBySlug = Product(
       id: '',
       name: '',
@@ -33,8 +34,16 @@ class ProductController extends GetxController {
   getProducts() async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      hotProducts.value = await ProductApi.getProducts();
-      featuredProducts.value = hotProducts.reversed.toList();
+      featuredProducts.value = await ProductApi.getProducts();
+      var list = await ProductApi.getRecommendedProductsByBehavior();
+      print(list);
+      if (list.isNotEmpty) {
+        recommendedProducts.value = list;
+        print(list);
+      } else {
+        recommendedProducts.value = featuredProducts.reversed.toList();
+      }
+      EasyLoading.dismiss();
     } catch (e) {
       print(e);
       EasyLoading.dismiss();
@@ -45,8 +54,6 @@ class ProductController extends GetxController {
         middleText: "Đã có lỗi xảy ra",
         textCancel: Constants.I_KNOW,
       );
-    } finally {
-      EasyLoading.dismiss();
     }
   }
 
@@ -57,6 +64,23 @@ class ProductController extends GetxController {
       if (productsByCategory.length > 20) {
         productsByCategory.getRange(0, 20);
       }
+      EasyLoading.dismiss();
+    } catch (e) {
+      EasyLoading.dismiss();
+      Get.defaultDialog(
+        title: Constants.WARNING_TITLE,
+        titleStyle:
+            TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+        middleText: "Đã có lỗi xảy ra",
+        textCancel: Constants.I_KNOW,
+      );
+    }
+  }
+
+  getProductsSearched(text) async {
+    try {
+      EasyLoading.show(status: Constants.WAIT);
+      productSearched.value = await ProductApi.getProductsSearched(text);
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.dismiss();

@@ -66,6 +66,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         color: Colors.grey,
                         icon: SvgPicture.asset("assets/icons/delete.svg"),
                         onPressed: () {
+                          print(_searchText.text);
                           _searchText.text = "";
                         },
                       )),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sp_shop_app/components/dropdown.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
+import 'package:sp_shop_app/controllers/behavior_controller.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/controllers/checkout_controller.dart';
 import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
@@ -20,6 +21,8 @@ class Body extends StatelessWidget {
     final DeliveryInfoController _deliveryInfoController =
         Get.put(DeliveryInfoController());
     final CartController _cartController = Get.put(CartController());
+    final BehaviorController _behaviorController = Get.put(BehaviorController());
+
     print(_deliveryInfoController.addresses);
     return Container(
         color: Color.fromARGB(255, 245, 230, 232),
@@ -221,6 +224,9 @@ class Body extends StatelessWidget {
                       int totalAmount = _cartController.totalAmount.value + 30000;
                       _checkoutController.purchaseOrder(items, addressId, totalAmount);
                       _cartController.picked.value = [];
+                      for(var item in items){
+                        _behaviorController.addBehavior(item.product.id, "buy");
+                      }
                     },
                     text: "Thanh toán")
               ],

@@ -17,7 +17,7 @@ class _HomeState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    if (_productController.hotProducts.isEmpty) {
+    if (_productController.featuredProducts.isEmpty) {
       _productController.getProducts();
     }
   }
@@ -48,7 +48,7 @@ class _HomeState extends State<HomeScreen> {
               ],
             ))),
         body: Body(
-            hotProducts: _productController.hotProducts,
+            recommendedProducts: _productController.recommendedProducts,
             featuredProducts: _productController.featuredProducts),
         bottomNavigationBar: BottomNavigation());
   }
