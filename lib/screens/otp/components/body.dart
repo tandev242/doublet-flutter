@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sp_shop_app/controllers/auth_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/size_config.dart';
 
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
+  final String email;
+
+  const Body({Key? key, required this.email}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -20,9 +26,9 @@ class Body extends StatelessWidget {
                 Constants.OTP_VERIFICATION,
                 style: headingStyle,
               ),
-              Text("Chúng tôi sẽ gửi mã xác thực qua số điện thoại: ",
+              Text("Chúng tôi sẽ gửi mã xác thực qua số email: ",
               textAlign: TextAlign.center),
-              Text("+84 132421***",
+              Text(email,
               textAlign: TextAlign.center),
               buildTimer(),
               OtpForm(),

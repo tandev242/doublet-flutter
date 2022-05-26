@@ -5,6 +5,7 @@ final Http http = Http();
 
 class Http {
   String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
+  // String apiURL = 'http://localhost:5000/api';
   var tokenVip =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM4MjI4NjBkY2JjMzYyZTg0NmViMDIiLCJlbWFpbCI6InRhbmJhZGJveUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY1MzM3NjU0Mn0.vu4vO0nxByMtbJPbJFB1uhi-xj4m0AtmYEMdBMOB-po';
   final Dio dio = Dio();
@@ -14,7 +15,7 @@ class Http {
     if (token != null) {
       http.dio.options.headers = {'Authorization': 'Bearer ${token}'};
     } else {
-      http.dio.options.headers = {'Authorization': 'Bearer ${tokenVip}'};
+      http.dio.options.headers = {'Authorization': 'Bearer ${token}'};
     }
   }
 

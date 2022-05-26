@@ -4,7 +4,15 @@ import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  final String title;
+  final String textButton;
+  final Function() press;
+  const SuccessScreen(
+      {Key? key,
+      required this.title,
+      required this.textButton,
+      required this.press})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +23,7 @@ class SuccessScreen extends StatelessWidget {
         children: [
           Image(image: AssetImage('assets/img/success.gif')),
           Text(
-            "Thanh toán thành công !",
+            title,
             style: TextStyle(
                 fontSize: 16.0,
                 color: Color.fromARGB(255, 75, 67, 67),
@@ -25,10 +33,8 @@ class SuccessScreen extends StatelessWidget {
             height: 10.0,
           ),
           RoundedButton(
-              press: () {
-                Get.to(HomeScreen());
-              },
-              text: "Trở về trang chủ")
+              press: press,
+              text: textButton)
         ],
       ),
     ));

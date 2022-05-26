@@ -15,4 +15,24 @@ class DeliveryInfoApi {
       throw (e);
     }
   }
+
+  static Future<dynamic> addDeliveryInfo(info) async {
+    try {
+      Response response = await http.post('/deliveryInfo/add', data: info);
+      var res = response.data;
+      return res;
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  static Future<dynamic> deleteDeliveryInfo(data) async {
+    try {
+      Response response = await http.post('/deliveryInfo/delete', data: data);
+      var res = response.data;
+      return res;
+    } catch (e) {
+      return null;
+    }
+  }
 }

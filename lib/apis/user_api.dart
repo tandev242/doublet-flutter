@@ -6,7 +6,7 @@ class UserApi{
 
   static Future<dynamic> update(data) async {
     try {
-      Response result = await http.post('/user/update',data: data);
+      Response result = await http.post('/user/updateUserInfo',data: data);
       var res = result.data;
       print(res);
       return res;

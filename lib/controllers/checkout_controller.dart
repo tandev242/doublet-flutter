@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/apis/order_api.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
+import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
+import 'package:sp_shop_app/screens/SuccessScreen/success_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 enum PaymentType { cod, momo }
@@ -43,16 +45,22 @@ class CheckoutController extends GetxController {
 
       bool isAdded = await OrderApi.addOrder(order);
       if (isAdded) {
-        Get.defaultDialog(
+        // Get.defaultDialog(
+        //     title: "Thanh toán thành công",
+        //     titleStyle:
+        //         TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+        //     textConfirm: Constants.ADD_ORDER_SUCCESSFULLY,
+        //     textCancel: Constants.BACK_TO_CART,
+        //     confirmTextColor: Colors.white,
+        //     middleText: "",
+        //     onConfirm: () => {Get.to(const MyOrdersScreen())},
+        //     onCancel: () => {Get.to(const CartScreen())});
+        Get.to(() => SuccessScreen(
             title: "Thanh toán thành công",
-            titleStyle:
-                TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-            textConfirm: Constants.ADD_ORDER_SUCCESSFULLY,
-            textCancel: Constants.BACK_TO_CART,
-            confirmTextColor: Colors.white,
-            middleText: "",
-            onConfirm: () => {Get.to(const MyOrdersScreen())},
-            onCancel: () => {Get.to(const CartScreen())});
+            textButton: "Quay về Trang chủ",
+            press: () {
+              Get.to(() => HomeScreen());
+            }));
       } else {
         Get.defaultDialog(
             title: "Thanh toán thất bại",
