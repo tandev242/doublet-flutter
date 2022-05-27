@@ -1,5 +1,5 @@
 class User {
-  final String name;
+   String name;
   final String email;
   final String photo;
   final String role;

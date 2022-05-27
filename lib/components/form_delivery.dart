@@ -11,38 +11,34 @@ class DeliveryForm extends StatelessWidget {
   Widget build(BuildContext context) {
     DeliveryInfoController d = Get.put(DeliveryInfoController());
 
-    return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RoundedInputField(
-              hintText: "Người nhận",
-              icon: Icon(Icons.people_alt_outlined),
-              labelText: "Người nhận",
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RoundedInputField(
+            hintText: "Người nhận",
+            icon: Icon(Icons.people_alt_outlined),
+            labelText: "Người nhận",
+            onChanged: (value) {
+              d.receiver.value = value;
+            },
+          ),
+          RoundedInputField(
+              hintText: "Số điện thoại",
+              icon: Icon(Icons.phone_android_outlined),
+              labelText: "Số điện thoại",
               onChanged: (value) {
-                d.receiver.value = value;
-              },
-            ),
-            RoundedInputField(
-                hintText: "Số điện thoại",
-                icon: Icon(Icons.phone_android_outlined),
-                labelText: "Số điện thoại",
-                
-                onChanged: (value) {
-                  d.phoneNumber.value = value;
-              }
-            ),
-            RoundedInputField(
-                hintText: "Địa chỉ",
-                icon: Icon(Icons.map_outlined),
-                labelText: "Địa chỉ",
-                onChanged: (value) {
-                  d.address.value = value;
-                },
-            )    
-          ],
-        ),
+                d.phoneNumber.value = value;
+              }),
+          RoundedInputField(
+            hintText: "Địa chỉ",
+            icon: Icon(Icons.map_outlined),
+            labelText: "Địa chỉ",
+            onChanged: (value) {
+              d.address.value = value;
+            },
+          )
+        ],
       ),
     );
   }

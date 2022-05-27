@@ -184,8 +184,8 @@ class AuthController extends GetxController {
     }
   }
 
-  void updateInfo() async {
-    var data = {"name": newName.value, "profilePicture": user.value.photo};
+  void updateInfo(String newName) async {
+    var data = {"name": newName, "profilePicture": user.value.photo};
     print(data);
     EasyLoading.show(status: Constants.WAIT);
     var result = await UserApi.update(data);
@@ -193,13 +193,13 @@ class AuthController extends GetxController {
     if (result != null &&
         result["message"] != null &&
         result["message"].toString().contains("Updated successfully")) {
+      user.value.name = newName;
       Get.defaultDialog(
           title: Constants.NOTIFY_TITLE,
           titleStyle:
               TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
           middleText: Constants.UPDATE_INFO_SUCCESS,
           textCancel: Constants.WONDER);
-      user.value = await User.fromJson(result['user']);
     } else {
       Get.defaultDialog(
           title: Constants.NOTIFY_TITLE,

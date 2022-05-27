@@ -7,17 +7,13 @@ import 'package:sp_shop_app/screens/Profile/components.dart/profile_pic.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
-
+  final AuthController authController = Get.put(AuthController());
+  var nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.put(AuthController());
-    final user = authController.user.value;
     Size size = MediaQuery.of(context).size;
 
-    void updateInfo() {
-      authController.updateInfo();
-    }
+    String newName = authController.user.value.name;
 
     return Scaffold(
       appBar: AppBar(
@@ -36,45 +32,50 @@ class EditProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: size.height,
-        child: SingleChildScrollView(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                ProfilePic(img: user.photo),
-                SizedBox(
-                  height: 20,
-                ),
-                RoundedInputField(
-                  isReadOnly: true,
-                  initialText: user.email,
-                  // hintText: user['email'],
-                  icon: Icon(Icons.mail),
-                ),
-                Obx(()=>RoundedInputField(
-                  initialText: user.name ,
-                  labelText: Constants.FULL_NAME,
-                  hintText: Constants.FULL_NAME,
-                  icon: Icon(Icons.people),
-                  onChanged: (value) {
-                    authController.newName.value = value;
-                  },
-                ),
-                ),
-                
-                SizedBox(
-                  height: 40,
-                ),
-                RoundedButton(
-                    press: updateInfo,
-                    text: Constants.SAVE)
-              ]),
-        ),
+      body: GetX<AuthController>(
+        builder: (_) {
+          print(authController.name.value);
+          return Container(
+            width: double.infinity,
+            height: size.height,
+            child: SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ProfilePic(img: authController.user.value.photo),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    RoundedInputField(
+                      isReadOnly: true,
+                      initialText: authController.user.value.email,
+                      // hintText: user['email'],
+                      icon: Icon(Icons.mail),
+                    ),
+                    RoundedInputField(
+                      initialText: authController.user.value.name,
+                      labelText: Constants.FULL_NAME,
+                      hintText: Constants.FULL_NAME,
+                      icon: Icon(Icons.people),
+                      onChanged: (value) {
+                        newName = value;
+                      },
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    RoundedButton(
+                        press: () {
+                          authController.updateInfo(newName);
+                        },
+                        text: Constants.SAVE)
+                  ]),
+            ),
+          );
+        },
       ),
     );
   }
