@@ -19,6 +19,8 @@ class DeliveryInfoController extends GetxController {
   var address = "".obs;
 
   mapAddressesToDropDown(list) {
+    addresses = [];
+    addressesValue = [];
     for (final item in list) {
       addresses.add(item.address);
       addressesValue.add(item.id);
@@ -34,6 +36,7 @@ class DeliveryInfoController extends GetxController {
     try {
       EasyLoading.show(status: Constants.WAIT);
       var result = await DeliveryInfoApi.getDeliveryInfo();
+      print(result);
       if (result.length > 0) {
         deliveryInfo.value = result;
         pickedAddress.value = result[0];
@@ -85,7 +88,6 @@ class DeliveryInfoController extends GetxController {
       EasyLoading.dismiss();
       if (response != null) {
         print("===> Response add delivery: $response");
-        await getDeliveryInfo();
         receiver.value = "";
         phoneNumber.value = "";
         address.value = "";
@@ -107,16 +109,13 @@ class DeliveryInfoController extends GetxController {
   deleteDelivery(selectedItem) async {
     var id = selectedItem.id;
     var data = {
-      "payload":{
-        "addressId": id
-      }
+      "payload": {"addressId": id}
     };
     print(data);
     EasyLoading.show(status: Constants.WAIT);
     var response = await DeliveryInfoApi.deleteDeliveryInfo(data);
     EasyLoading.dismiss();
     if (response != null) {
-      getDeliveryInfo();
       Get.defaultDialog(
           title: Constants.NOTIFY_TITLE,
           titleStyle:

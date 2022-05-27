@@ -20,7 +20,6 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
   @override
   void initState() {
     super.initState();
-    _deliveryInfoController.getDeliveryInfo();
     var deliveryList = _deliveryInfoController.deliveryInfo;
     _list = ListModel<dynamic>(
       listKey: _listKey,
@@ -66,10 +65,10 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
   void _remove() {
     if (_selectedItem != null) {
       _deliveryInfoController.deleteDelivery(_selectedItem);
-      // _list.removeAt(_list.indexOf(_selectedItem!));
-      // setState(() {
-      //   _selectedItem = null;
-      // });
+      _list.removeAt(_list.indexOf(_selectedItem!));
+      setState(() {
+        _selectedItem = null;
+      });
     }
   }
 
