@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/apis/order_api.dart';
-import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
-import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
+import 'package:sp_shop_app/screens/SuccessScreen/success_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum PaymentType { cod, momo }
 
@@ -32,27 +32,19 @@ class CheckoutController extends GetxController {
               "purchaseQty": item.quantity
             })
         .toList();
-    if (type.value == PaymentType.cod) {
-      Map<String, dynamic> order = {
-        'items': orderItems,
-        'addressId': addressId,
-        'totalAmount': totalAmount,
-        'paymentStatus': paymentStatus,
-        'paymentType': 'cod'
-      };
 
+    Map<dynamic, dynamic> order = {
+      'items': orderItems,
+      'addressId': addressId,
+      'totalAmount': totalAmount,
+      'paymentStatus': paymentStatus,
+      'paymentType': type.value == PaymentType.cod ? "cod" : "momo"
+    };
+    print(order);
+    if (type.value == PaymentType.cod) {
       bool isAdded = await OrderApi.addOrder(order);
       if (isAdded) {
-        Get.defaultDialog(
-            title: "Thanh toán thành công",
-            titleStyle:
-                TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-            textConfirm: Constants.ADD_ORDER_SUCCESSFULLY,
-            textCancel: Constants.BACK_TO_CART,
-            confirmTextColor: Colors.white,
-            middleText: "",
-            onConfirm: () => {Get.to(const MyOrdersScreen())},
-            onCancel: () => {Get.to(const CartScreen())});
+        Get.to(const SuccessScreen());
       } else {
         Get.defaultDialog(
             title: "Thanh toán thất bại",
@@ -62,12 +54,18 @@ class CheckoutController extends GetxController {
             textCancel: Constants.OK);
       }
     } else {
-      Get.defaultDialog(
-          title: "Thanh toán thất bại",
-          titleStyle:
-              TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: "Chức năng hiện tại chưa có",
-          textCancel: Constants.OK);
+      Object payload = {"order": order};
+      String url = await OrderApi.addOrderByMomo(payload);
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        Get.defaultDialog(
+            title: "Thanh toán thất bại",
+            titleStyle:
+                TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+            middleText: "Chưa thể thanh toán",
+            textCancel: Constants.OK);
+      }
     }
   }
 }

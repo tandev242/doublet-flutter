@@ -11,7 +11,7 @@ class SeeMoreScreen extends StatelessWidget {
       : super(key: key);
   final String type;
   final String name;
-  
+
   final ProductController _productController = Get.put(ProductController());
 
   @override
@@ -57,8 +57,10 @@ class SeeMoreScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                if(type == "recommend")
+                if (type == "recommend")
                   SeeMoreList(products: _productController.recommendedProducts)
+                else if (type == "search")
+                  SeeMoreList(products: _productController.searchedProducts)
                 else
                   SeeMoreList(products: _productController.featuredProducts)
               ],

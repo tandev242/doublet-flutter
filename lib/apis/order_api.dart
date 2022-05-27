@@ -13,13 +13,26 @@ class OrderApi {
       throw (e);
     }
   }
+
   static Future<bool> addOrder(payload) async {
     try {
       Response res = await http.post('/order/add', data: payload);
-      if(res.statusCode == 201) {
+      if (res.statusCode == 201) {
         return true;
       }
       return false;
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  static Future<String> addOrderByMomo(payload) async {
+    try {
+      Response res = await http.post('/order/paymentWithMomo', data: payload);
+      if (res.statusCode == 200) {
+        return res.data['url'];
+      }
+      return "";
     } catch (e) {
       throw (e);
     }

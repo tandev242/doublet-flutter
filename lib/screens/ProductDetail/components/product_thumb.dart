@@ -167,12 +167,12 @@ class ProductThumbState extends State<ProductThumb> {
                       "Sizes",
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                     ),
-                    
                   ],
                 )
                 
               ],
             ),
+            SizedBox(height: 10.0),
             CustomRadio(),
             SizedBox(height: 20.0,)
             

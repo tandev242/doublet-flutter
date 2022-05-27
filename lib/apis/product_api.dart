@@ -53,7 +53,7 @@ class ProductApi {
   static Future<List<dynamic>> getProductsSearched(text) async {
     try {
       Response result =
-          await http.post('/recom/searchByProductName', data: text);
+          await http.post('/product/searchByProductName', data: { text: text});
       var products = result.data["products"]
           .map((product) => Product.fromJson(product))
           .toList();

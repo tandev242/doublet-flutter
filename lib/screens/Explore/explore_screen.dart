@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
+import 'package:sp_shop_app/components/search_bar.dart';
 import 'package:sp_shop_app/controllers/category_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Explore/components/category_list.dart';
@@ -14,7 +14,6 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  final TextEditingController _searchText = TextEditingController();
   final CategoryController _categoryController = Get.put(CategoryController());
 
   @override
@@ -45,32 +44,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             child: ListView(
               shrinkWrap: true,
               children: [
-                TextField(
-                  autofocus: false,
-                  controller: _searchText,
-                  style: cExploreSearchTextStyle,
-                  decoration: InputDecoration(
-                      filled: true,
-                      hintText: Constants.SEARCH_TEXT,
-                      hintStyle: cExploreSearchHintStyle,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              width: 0.0, style: BorderStyle.none)),
-                      prefixIcon: const Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                      suffixIcon: IconButton(
-                        // Icon to
-                        color: Colors.grey,
-                        icon: SvgPicture.asset("assets/icons/delete.svg"),
-                        onPressed: () {
-                          print(_searchText.text);
-                          _searchText.text = "";
-                        },
-                      )),
-                ),
+                SearchBar(),
                 const SizedBox(
                   height: 20,
                 ),

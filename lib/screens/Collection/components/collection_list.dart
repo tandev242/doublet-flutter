@@ -4,9 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 
 class CollectionList extends StatelessWidget {
-  const CollectionList({Key? key, required this.products}) : super(key: key);
+  CollectionList({Key? key, required this.products}) : super(key: key);
 
   final List products;
+
+  int limitOfItemCount = 21;
+  int getLengthOfProducts() {
+    int length = limitOfItemCount;
+    if (products.isNotEmpty) {
+      length = products.length;
+      length = length > 20 ? 20 : length;
+    }
+    return length;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +28,11 @@ class CollectionList extends StatelessWidget {
               mainAxisExtent: 280,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20),
-          itemCount: products.length,
+          itemCount: getLengthOfProducts(),
           itemBuilder: (BuildContext ctx, index) {
+            if(getLengthOfProducts() == limitOfItemCount){
+              return Container();
+            }
             return InkWell(
               onTap: () {
                 Navigator.push(

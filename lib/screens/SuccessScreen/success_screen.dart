@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
+import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({Key? key}) : super(key: key);
@@ -28,7 +29,13 @@ class SuccessScreen extends StatelessWidget {
               press: () {
                 Get.to(HomeScreen());
               },
-              text: "Trở về trang chủ")
+              text: "Trở về trang chủ"),
+          RoundedButton(
+              color: Colors.green,
+              press: () {
+                Get.to(MyOrdersScreen());
+              },
+              text: "Xem đơn hàng")
         ],
       ),
     ));

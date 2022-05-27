@@ -6,6 +6,7 @@ class AuthApi {
     try {
       Response result = await http.post('/auth/signin',data: data);
       var res = result.data;
+      print(res);
       return res;
     } catch (e) {
       return null;

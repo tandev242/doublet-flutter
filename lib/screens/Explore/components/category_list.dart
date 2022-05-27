@@ -6,10 +6,19 @@ import 'package:sp_shop_app/screens/Collection/collection_screen.dart';
 class CategoryList extends StatelessWidget {
   CategoryList({Key? key, required this.categories}) : super(key: key);
   List categories;
+  int limitOfItemCount = 9;
+  int getLengthOfCategories() {
+    int length = limitOfItemCount;
+    if (categories.isNotEmpty) {
+      length = categories.length;
+      length = length > 8 ? 8 : length;
+    }
+    return length;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GridView.builder(
+    return Obx(() => (GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -17,8 +26,11 @@ class CategoryList extends StatelessWidget {
             mainAxisExtent: 240,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
-        itemCount: categories.length > 8 ? 8 : categories.length,
+        itemCount: getLengthOfCategories(),
         itemBuilder: (BuildContext ctx, index) {
+          if (getLengthOfCategories() == limitOfItemCount) {
+            return Container();
+          }
           return InkWell(
             onTap: () {
               FocusScope.of(context).unfocus();
@@ -73,6 +85,6 @@ class CategoryList extends StatelessWidget {
               ),
             ),
           );
-        }));
+        })));
   }
 }

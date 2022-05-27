@@ -4,17 +4,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 final Http http = Http();
 
 class Http {
-  String apiURL = 'http://ec2-3-210-203-215.compute-1.amazonaws.com/api';
+  String apiURL = 'https://doublet-sport.herokuapp.com/api';
+  // String apiURL = 'http://localhost:5000/api';
+
   var tokenVip =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM4MjI4NjBkY2JjMzYyZTg0NmViMDIiLCJlbWFpbCI6InRhbmJhZGJveUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY1MzM3NjU0Mn0.vu4vO0nxByMtbJPbJFB1uhi-xj4m0AtmYEMdBMOB-po';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1NWExYWEwYWM4MjEzNDg2NTYxMWEiLCJlbWFpbCI6InN1cGVyanVuaW9yMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ5NjUzMDEyLCJleHAiOjE2NDk3Mzk0MTJ9.upGR5Q7FOUBDts8fhuTgZyG5J2Tp3pNvLqJwNkUutEw';
   final Dio dio = Dio();
   auth() async {
     final prefs = await SharedPreferences.getInstance();
     var token = await prefs.getString('token');
     if (token != null) {
       http.dio.options.headers = {'Authorization': 'Bearer ${token}'};
+      return true;
     } else {
       http.dio.options.headers = {'Authorization': 'Bearer ${tokenVip}'};
+      return false;
     }
   }
 

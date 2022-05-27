@@ -5,6 +5,7 @@ import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/custom_radio.dart';
 import 'package:sp_shop_app/controllers/cart_controller.dart';
 import 'package:sp_shop_app/entities/product.dart';
+import 'package:sp_shop_app/screens/SeeMore/see_more_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ProductController extends GetxController {
@@ -12,7 +13,7 @@ class ProductController extends GetxController {
   var recommendedProducts = [].obs;
   var featuredProducts = [].obs;
   var productsByCategory = [].obs;
-  var productSearched = [].obs;
+  var searchedProducts = [].obs;
   var productBySlug = Product(
       id: '',
       name: '',
@@ -34,16 +35,16 @@ class ProductController extends GetxController {
   getProducts() async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      featuredProducts.value = await ProductApi.getProducts();
-      var list = await ProductApi.getRecommendedProductsByBehavior();
-      print(list);
-      if (list.isNotEmpty) {
-        recommendedProducts.value = list;
-        print(list);
+      var res = await Future.wait([
+        ProductApi.getProducts(),
+        ProductApi.getRecommendedProductsByBehavior()
+      ]);
+      featuredProducts.value = res[0];
+      if (res[1].isNotEmpty) {
+        recommendedProducts.value = res[1];
       } else {
         recommendedProducts.value = featuredProducts.reversed.toList();
       }
-      EasyLoading.dismiss();
     } catch (e) {
       print(e);
       EasyLoading.dismiss();
@@ -55,15 +56,15 @@ class ProductController extends GetxController {
         textCancel: Constants.I_KNOW,
       );
     }
+    finally {
+      EasyLoading.dismiss();
+    }
   }
 
   getProductsByCategory(slug) async {
     try {
       EasyLoading.show(status: Constants.WAIT);
       productsByCategory.value = await ProductApi.getCollections(slug);
-      if (productsByCategory.length > 20) {
-        productsByCategory.getRange(0, 20);
-      }
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.dismiss();
@@ -80,7 +81,10 @@ class ProductController extends GetxController {
   getProductsSearched(text) async {
     try {
       EasyLoading.show(status: Constants.WAIT);
-      productSearched.value = await ProductApi.getProductsSearched(text);
+      searchedProducts.value = featuredProducts
+          .where((item) => item.name.toUpperCase().contains(text.toUpperCase()))
+          .toList();
+      Get.to(SeeMoreScreen(name: "Kết quả tìm kiếm: ${text}", type: "search"));
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.dismiss();
@@ -125,6 +129,7 @@ class ProductController extends GetxController {
           "quantity": _cartController.getQuantityAfterVerified(
               product.id.toString(), sizeSelected.value, 1)
         };
+        Get.back();
         _cartController.addToCart(cartItem);
       },
       textCancel: "Hủy",

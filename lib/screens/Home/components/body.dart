@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_shop_app/components/product_list.dart';
+import 'package:sp_shop_app/components/search_bar.dart';
 import 'package:sp_shop_app/screens/Home/components/background.dart';
 import 'package:sp_shop_app/screens/SeeMore/see_more_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
@@ -19,28 +20,7 @@ class Body extends StatelessWidget {
     return Background(
         child: Column(
       children: [
-        TextField(
-          style: const TextStyle(
-              fontSize: 16,
-              color: Color.fromARGB(0, 0, 0, 0),
-              fontWeight: FontWeight.bold),
-          decoration: InputDecoration(
-            filled: true,
-            hintText: Constants.SEARCH_TEXT,
-            hintStyle: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 16,
-                color: Color(0xff7C7C7C)),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide:
-                    const BorderSide(width: 0.0, style: BorderStyle.none)),
-            prefixIcon: const Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-          ),
-        ),
+        SearchBar(),
         const SizedBox(height: 10.0),
         Image.asset(
           'assets/img/grizman.jpg',
