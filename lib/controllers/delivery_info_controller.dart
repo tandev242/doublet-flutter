@@ -120,7 +120,7 @@ class DeliveryInfoController extends GetxController {
           title: Constants.NOTIFY_TITLE,
           titleStyle:
               TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
-          middleText: "Xóa địa chỉ không thành công",
+          middleText: "Xóa địa chỉ thành công",
           textCancel: Constants.I_KNOW);
     } else {
       Get.defaultDialog(
