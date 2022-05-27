@@ -17,10 +17,10 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
       Get.put(DeliveryInfoController());
   late ListModel<dynamic> _list;
   Object? _selectedItem;
-  late Object _nextItem;
   @override
   void initState() {
     super.initState();
+    _deliveryInfoController.getDeliveryInfo();
     var deliveryList = _deliveryInfoController.deliveryInfo;
     _list = ListModel<dynamic>(
       listKey: _listKey,
@@ -56,46 +56,49 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
 
   // Insert the "next item" into the list model.
   void _insert() {
-    final int index =
-        _selectedItem == null ? _list.length : _list.indexOf(_selectedItem!);
-    _list.insert(index, _nextItem);
+    _deliveryInfoController.addDeliveryInfo();
+    // final int index =
+    //     _selectedItem == null ? _list.length : _list.indexOf(_selectedItem!);
+    // _list.insert(index, _nextItem);
   }
 
   // Remove the selected item from the list model.
   void _remove() {
     if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem!));
-      setState(() {
-        _selectedItem = null;
-      });
+      _deliveryInfoController.deleteDelivery(_selectedItem);
+      // _list.removeAt(_list.indexOf(_selectedItem!));
+      // setState(() {
+      //   _selectedItem = null;
+      // });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AnimatedList'),
-        backgroundColor: kPrimaryColor,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: _insert,
-          ),
-          IconButton(
-            icon: const Icon(Icons.remove_circle),
-            onPressed: _remove,
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: AnimatedList(
-          key: _listKey,
-          initialItemCount: _list.length,
-          itemBuilder: _buildItem,
+        appBar: AppBar(
+          title: const Text('Danh sách địa chỉ'),
+          backgroundColor: kPrimaryColor,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: _insert,
+            ),
+            IconButton(
+              icon: const Icon(Icons.remove_circle),
+              onPressed: _remove,
+            ),
+          ],
         ),
-      ),
-    );
+        body: 
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: AnimatedList(
+              key: _listKey,
+              initialItemCount: _list.length,
+              itemBuilder: _buildItem,
+            ),
+          ),
+        );
   }
 }

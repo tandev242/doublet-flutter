@@ -66,10 +66,10 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.headline4!;
-    // if (selected) {
-    //   textStyle = textStyle.copyWith(color: Colors.lightGreenAccent[400]);
-    // }
+    TextStyle textStyle = Theme.of(context).textTheme.headline6!;
+    if (selected) {
+      textStyle = textStyle.copyWith(color: Color.fromARGB(255, 238, 102, 98));
+    }
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: SizeTransition(
@@ -80,8 +80,13 @@ class CardItem extends StatelessWidget {
           child: SizedBox(
             height: 80.0,
             child: Card(
-              child: Center(
-                child: Text(item.address, style: textStyle),
+              color: selected ? Color.fromARGB(255, 246, 226, 226) : Color.fromARGB(255, 250, 250, 250) ,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  
+                  child: Text(item.address, style: textStyle,),
+                ),
               ),
             ),
           ),

@@ -14,6 +14,11 @@ class EditProfileScreen extends StatelessWidget {
     final AuthController authController = Get.put(AuthController());
     final user = authController.user.value;
     Size size = MediaQuery.of(context).size;
+
+    void updateInfo() {
+      authController.updateInfo();
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
@@ -34,33 +39,42 @@ class EditProfileScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: size.height,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              ProfilePic(img: user.photo),
-              SizedBox(
-                height: 20,
-              ),
-              RoundedInputField(
-                isReadOnly: true,
-                initialText: user.email,
-                // hintText: user['email'],
-                icon: Icon(Icons.mail),
-              ),
-              RoundedInputField(
-                initialText: user.name,
-                labelText: Constants.FULL_NAME,
-                hintText: Constants.FULL_NAME,
-                icon: Icon(Icons.people),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              RoundedButton(press: () {}, text: Constants.SAVE)
-            ]),
+        child: SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                ProfilePic(img: user.photo),
+                SizedBox(
+                  height: 20,
+                ),
+                RoundedInputField(
+                  isReadOnly: true,
+                  initialText: user.email,
+                  // hintText: user['email'],
+                  icon: Icon(Icons.mail),
+                ),
+                Obx(()=>RoundedInputField(
+                  initialText: user.name ,
+                  labelText: Constants.FULL_NAME,
+                  hintText: Constants.FULL_NAME,
+                  icon: Icon(Icons.people),
+                  onChanged: (value) {
+                    authController.newName.value = value;
+                  },
+                ),
+                ),
+                
+                SizedBox(
+                  height: 40,
+                ),
+                RoundedButton(
+                    press: updateInfo,
+                    text: Constants.SAVE)
+              ]),
+        ),
       ),
     );
   }

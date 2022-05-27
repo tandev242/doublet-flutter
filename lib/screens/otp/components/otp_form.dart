@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sp_shop_app/components/default_button.dart';
+import 'package:sp_shop_app/controllers/auth_controller.dart';
 import 'package:sp_shop_app/size_config.dart';
 import 'package:sp_shop_app/utils/constants.dart';
-
-
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -41,6 +41,8 @@ class _OtpFormState extends State<OtpForm> {
     pin6FocusNode!.dispose();
   }
 
+  List<String> s = [];
+
   void nextField(String value, FocusNode? focusNode) {
     if (value.length == 1) {
       focusNode!.requestFocus();
@@ -49,6 +51,11 @@ class _OtpFormState extends State<OtpForm> {
 
   @override
   Widget build(BuildContext context) {
+    AuthController a = Get.put(AuthController());
+    resetPass() {
+      a.resetPass();
+    }
+
     return Form(
       child: Column(
         children: [
@@ -67,6 +74,7 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
+                    a.o1.value = value;
                     nextField(value, pin2FocusNode);
                   },
                 ),
@@ -81,7 +89,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin3FocusNode),
+                  onChanged: (value) {
+                    a.o2.value = value;
+                    nextField(value, pin3FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -94,7 +105,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin4FocusNode),
+                  onChanged: (value) {
+                    a.o3.value = value;
+                    nextField(value, pin4FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -107,7 +121,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin5FocusNode)
+                  onChanged: (value) {
+                    a.o4.value = value;
+                    nextField(value, pin5FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -120,7 +137,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin6FocusNode)
+                  onChanged: (value) {
+                    a.o5.value = value;
+                    nextField(value, pin6FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -135,6 +155,7 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
                   onChanged: (value) {
                     if (value.length == 1) {
+                      a.o6.value = value;
                       pin6FocusNode!.unfocus();
                       // Then you need to check is the code is correct or not
                     }
@@ -145,8 +166,8 @@ class _OtpFormState extends State<OtpForm> {
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           DefaultButton(
-            text: "Continue",
-            press: () {},
+            text: Constants.CONFIRM,
+            press: resetPass,
           )
         ],
       ),

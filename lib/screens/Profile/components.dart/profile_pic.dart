@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:sp_shop_app/controllers/auth_controller.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
@@ -10,6 +12,8 @@ class ProfilePic extends StatelessWidget {
   final String img;
   @override
   Widget build(BuildContext context) {
+    AuthController a = Get.put(AuthController());
+    
     return SizedBox(
       height: 115,
       width: 115,

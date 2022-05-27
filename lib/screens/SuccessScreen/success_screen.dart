@@ -5,7 +5,9 @@ import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class SuccessScreen extends StatelessWidget {
         children: [
           Image(image: AssetImage('assets/img/success.gif')),
           Text(
-            "Thanh toán thành công !",
+            "Thanh toán thành công",
             style: TextStyle(
                 fontSize: 16.0,
                 color: Color.fromARGB(255, 75, 67, 67),

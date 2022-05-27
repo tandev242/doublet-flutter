@@ -65,7 +65,15 @@ class Constants {
   static const String FORGET_PASSWORD = "Quên mật khẩu";
   static const String ADD_ORDER_SUCCESSFULLY = "Xem đơn hàng";
   static const String BACK_TO_CART = "Quay về giỏ hàng";
-
+  static const String UPDATE_INFO_SUCCESS = "Cập nhật thông tin thành công!";
+  static const String UPDATE_INFO_FAILED = "Cập nhật thông tin thất bại!";
+  static const String WONDER = "Tuyệt vời";
+  static const String NOT_RIGHT_PASSWORD = "Mật khẩu chưa chính xác.";
+  static const String CHANGE_PASS_SUCCESS = "Thay đổi mật khẩu thành công.";
+  static const String REFILL_EMAIL = "Vui lòng kiểm tra email.";
+  static const String INVALID_OTP = "Mã xác thực không hợp lệ.";
+  static const String NOT_MATCH_OTP = "Mã xác thực không đúng";
+  static const String CONFIRM = "Xác nhận ";
 }
 
 const kPrimaryColor = Color.fromARGB(255, 233, 71, 71);

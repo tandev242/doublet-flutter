@@ -21,7 +21,6 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Column(children: [
-          ProfilePic(img: user.photo),
           SizedBox(height: 20),
           ProfileMenu(
             text: Constants.INFO,
@@ -30,12 +29,12 @@ class Body extends StatelessWidget {
           ),
           ProfileMenu(
             text: "Địa chỉ nhận hàng",
-            icon: "assets/icons/User Icon.svg",
+            icon: "assets/icons/store.svg",
             press: () => {Get.to(DeliveryInfoScreen())},
           ),
           ProfileMenu(
             text: "Thay đổi mật khẩu",
-            icon: "assets/icons/User Icon.svg",
+            icon: "assets/icons/Settings.svg",
             press: () => {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return ChangePasswordScreen();
@@ -44,7 +43,7 @@ class Body extends StatelessWidget {
           ),
           ProfileMenu(
             text: "Đơn hàng đã mua",
-            icon: "assets/icons/Bell.svg",
+            icon: "assets/icons/order.svg",
             press: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return MyOrdersScreen();
@@ -53,7 +52,7 @@ class Body extends StatelessWidget {
           ),
           ProfileMenu(
             text: "Đăng xuất",
-            icon: "assets/icons/Logout.svg",
+            icon: "assets/icons/Log out.svg",
             press: () {
               AuthController _authController = Get.put(AuthController());
               _authController.logout();
