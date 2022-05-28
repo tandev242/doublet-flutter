@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/product_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
-import 'package:sp_shop_app/controllers/category_controller.dart';
 import 'package:sp_shop_app/controllers/product_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/screens/Collection/components/collection_list.dart';

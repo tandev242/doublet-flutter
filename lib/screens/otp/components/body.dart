@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sp_shop_app/controllers/auth_controller.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 import 'package:sp_shop_app/size_config.dart';
 

@@ -3,7 +3,6 @@ import 'package:sp_shop_app/components/product_list.dart';
 import 'package:sp_shop_app/components/search_bar.dart';
 import 'package:sp_shop_app/screens/Home/components/background.dart';
 import 'package:sp_shop_app/screens/SeeMore/see_more_screen.dart';
-import 'package:sp_shop_app/utils/constants.dart';
 
 class Body extends StatelessWidget {
   Body(

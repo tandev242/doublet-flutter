@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sp_shop_app/components/dropdown.dart';
-import 'package:sp_shop_app/controllers/checkout_controller.dart';
-import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/screens/Checkout/components/body.dart';
 import 'package:sp_shop_app/utils/constants.dart';
-import 'package:bs_flutter_selectbox/bs_flutter_selectbox.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);

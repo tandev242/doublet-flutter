@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sp_shop_app/screens/ChangePassword/change_password_screen.dart';
-import 'package:sp_shop_app/screens/Checkout/checkout_screen.dart';
 import 'package:sp_shop_app/screens/EditProfile/edit_profile_screen.dart';
-import 'package:sp_shop_app/screens/ForgetPassword/forget_password_screen.dart';
 import 'package:sp_shop_app/screens/MyOrders/my_orders_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
-import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 import 'package:sp_shop_app/screens/SignUp/sign_up_screen.dart';
 import 'package:sp_shop_app/screens/Cart/cart_screen.dart';
 import 'package:sp_shop_app/screens/Explore/explore_screen.dart';
 import 'package:sp_shop_app/screens/Profile/profile_screen.dart';
-import 'package:sp_shop_app/screens/SuccessScreen/success_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
-import 'package:sp_shop_app/screens/otp/otp_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class MyApp extends StatelessWidget {

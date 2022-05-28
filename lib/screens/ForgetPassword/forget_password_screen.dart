@@ -5,7 +5,6 @@ import 'package:sp_shop_app/components/rounded_input_field.dart';
 import 'package:sp_shop_app/components/rounded_password_field.dart';
 import 'package:sp_shop_app/controllers/auth_controller.dart';
 import 'package:sp_shop_app/screens/SignUp/components/background.dart';
-import 'package:sp_shop_app/screens/otp/otp_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {

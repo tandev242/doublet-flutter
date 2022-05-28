@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sp_shop_app/utils/constants.dart';
 
 class Dropdown extends StatelessWidget {
   const Dropdown({

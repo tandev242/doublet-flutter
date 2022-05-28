@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/components/rounded_input_field.dart';
 import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 

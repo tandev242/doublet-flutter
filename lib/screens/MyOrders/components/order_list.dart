@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/entities/order.dart';
 import 'package:intl/intl.dart';
 import 'package:sp_shop_app/screens/ProductDetail/product_detail_screen.dart';
 

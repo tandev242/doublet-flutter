@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:sp_shop_app/components/dropdown.dart';
 import 'package:sp_shop_app/components/rounded_button.dart';
 import 'package:sp_shop_app/controllers/behavior_controller.dart';

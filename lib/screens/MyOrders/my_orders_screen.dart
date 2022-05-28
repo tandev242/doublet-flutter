@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:sp_shop_app/apis/order_api.dart';
 import 'package:sp_shop_app/components/bottom_navigation.dart';
 import 'package:sp_shop_app/controllers/order_controller.dart';
 import 'package:sp_shop_app/screens/MyOrders/components/order_list.dart';

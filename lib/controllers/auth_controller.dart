@@ -7,7 +7,6 @@ import 'package:sp_shop_app/controllers/delivery_info_controller.dart';
 import 'package:sp_shop_app/entities/user.dart';
 import 'package:sp_shop_app/screens/Home/home_screen.dart';
 import 'package:sp_shop_app/screens/Login/login_screen.dart';
-import 'package:sp_shop_app/screens/SuccessScreen/success_screen.dart';
 import 'package:sp_shop_app/screens/Welcome/welcome_screen.dart';
 import 'package:sp_shop_app/screens/otp/otp_screen.dart';
 import 'package:sp_shop_app/utils/constants.dart';
