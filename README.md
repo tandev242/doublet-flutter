@@ -12,20 +12,19 @@ A new Flutter project.
     - Mở emulator có trong máy
     - Chọn Run  => Run Without Debugging
 # Các chức năng của đề tài:
-o	Đăng nhập, đăng ký, đăng xuất, quên mật khẩu bằng OTP
-o	Gợi ý sản phẩm theo hành vi người dùng
-o	Tìm kiếm sản phẩm
-o	Xem sản phẩm theo loại
-o	Xem chi tiết sản phẩm
-o	Giỏ hàng
-o	Checkout đơn hàng
-o	Thanh toán bằng ví Momo 
-o	Thanh  toán sau khi nhận hàng
-o	Thay đổi thông tin cá nhân, mật khẩu bằng mã OTP
-o	Tra cứu đơn hàng đã mua
-o	Quản lý địa chỉ nhận hàng
+-   Đăng nhập, đăng ký, đăng xuất, quên mật khẩu bằng OTP
+-   Gợi ý sản phẩm theo hành vi người dùng
+-	Tìm kiếm sản phẩm
+-	Xem sản phẩm theo loại
+-	Xem chi tiết sản phẩm
+-	Giỏ hàng
+-	Checkout đơn hàng
+-	Thanh toán bằng ví Momo 
+-	Thanh  toán sau khi nhận hàng
+-	Thay đổi thông tin cá nhân, mật khẩu bằng mã OTP
+-	Tra cứu đơn hàng đã mua
+-	Quản lý địa chỉ nhận hàng
 
-# double-t-flutter
-# doublet-flutter
+
 # doublet-flutter
 
