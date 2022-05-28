@@ -2,18 +2,30 @@
 
 A new Flutter project.
 
-## Getting Started
+# Các bước setup project
+1. Clone project về máy
+2. Mở project trong VSCode
+3. Vào terminal gõ lệnh để cài đặt các thứ viện : flutter pub get
+4. Chạy trên Trình  duyệt
+-  Gõ lệnh : flutter run
+-  Android :
+    - Mở emulator có trong máy
+    - Chọn Run  => Run Without Debugging
+# Các chức năng của đề tài:
+o	Đăng nhập, đăng ký, đăng xuất, quên mật khẩu bằng OTP
+o	Gợi ý sản phẩm theo hành vi người dùng
+o	Tìm kiếm sản phẩm
+o	Xem sản phẩm theo loại
+o	Xem chi tiết sản phẩm
+o	Giỏ hàng
+o	Checkout đơn hàng
+o	Thanh toán bằng ví Momo 
+o	Thanh  toán sau khi nhận hàng
+o	Thay đổi thông tin cá nhân, mật khẩu bằng mã OTP
+o	Tra cứu đơn hàng đã mua
+o	Quản lý địa chỉ nhận hàng
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # double-t-flutter
 # doublet-flutter
 # doublet-flutter
+
