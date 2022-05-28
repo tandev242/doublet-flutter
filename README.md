@@ -5,10 +5,10 @@ A new Flutter project.
 # Các bước setup project
 1. Clone project về máy
 2. Mở project trong VSCode
-3. Vào terminal gõ lệnh để cài đặt các thứ viện : flutter pub get
+3. Vào terminal gõ lệnh để cài đặt các thứ viện : `flutter pub get`
 4. Chạy project:
 -  Trên Trình  duyệt
-    -  Gõ lệnh : flutter run
+    -  Gõ lệnh : `flutter run`
 -  Trên Android emulator :
     - Mở emulator có trong máy
     - Chọn Run  => Run Without Debugging
