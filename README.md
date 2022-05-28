@@ -8,7 +8,7 @@ A new Flutter project.
 3. Vào terminal gõ lệnh để cài đặt các thứ viện : flutter pub get
 4. Chạy trên Trình  duyệt
 -  Gõ lệnh : flutter run
--  Android :
+5. Chạy trên Android emulator :
     - Mở emulator có trong máy
     - Chọn Run  => Run Without Debugging
 # Các chức năng của đề tài:
